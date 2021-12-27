@@ -1,0 +1,1743 @@
+Module(
+    body=[Import(names=[alias(name='functools', asname=None)]),
+        Import(names=[alias(name='time', asname=None)]),
+        Import(names=[alias(name='sys', asname=None)]),
+        Expr(
+            value=Constant(
+                value='\nstack that will be pushed & popped with frames during function calls, just like stack-based memory allocation.\nThese frames are the records in our stacks.json to generate a flame graph.\n',
+                kind=None)),
+        Assign(targets=[Name(id='stack')], value=List(elts=[]), type_comment=None),
+        Expr(
+            value=Constant(
+                value='\nWhen root function call (ie. main()) finishes, its frame is assigned to root_frame_reference.\nThen program terminates and stacks.json is generated based on the content of root_frame_reference.\n',
+                kind=None)),
+        Assign(targets=[Name(id='root_frame_reference')], value=Constant(value=None, kind=None), type_comment=None),
+        Expr(
+            value=Constant(
+                value='\nconsumption_tracker function here is a function wrapper, also knows as decorator.\nA decorator wraps a function to extend the behavior of the wrapped function, without permanently modifying it.\nIn the decorator, a function is taken as the argument and then called inside the wrapper function.\nReference: https://www.geeksforgeeks.org/function-wrappers-in-python/\n',
+                kind=None)),
+        FunctionDef(name='consumption_tracker',
+            args=arguments(posonlyargs=[],
+                args=[arg(arg='func', annotation=None, type_comment=None)],
+                vararg=None,
+                kwonlyargs=[],
+                kw_defaults=[],
+                kwarg=None,
+                defaults=[]),
+            body=[
+                Expr(
+                    value=Constant(
+                        value='\n    Record the CPU usage (time elapsed) of the frame in stack during a function call.\n    The record of Memory usage (heap allocation) is done in ASTInstrumenterConsumptionTracker.visit_Assign() separately.\n    ',
+                        kind=None)),
+                FunctionDef(name='wrapper',
+                    args=arguments(posonlyargs=[],
+                        args=[],
+                        vararg=arg(arg='args', annotation=None, type_comment=None),
+                        kwonlyargs=[],
+                        kw_defaults=[],
+                        kwarg=arg(arg='kwargs', annotation=None, type_comment=None),
+                        defaults=[]),
+                    body=[
+                        Expr(value=Constant(value='Push a frame onto stack before function call starts.', kind=None)),
+                        Assign(targets=[Name(id='frame')],
+                            value=Dict(
+                                keys=[Constant(value='children', kind=None),
+                                    Constant(value='name', kind=None),
+                                    Constant(value='value', kind=None),
+                                    Constant(value='heapAlloc', kind=None)],
+                                values=[List(elts=[]),
+                                    Attribute(value=Name(id='func'), attr='__name__'),
+                                    Constant(value=0.0, kind=None),
+                                    Dict(keys=[Constant(value='vars', kind=None)], values=[List(elts=[])])]),
+                            type_comment=None),
+                        Expr(
+                            value=Call(func=Attribute(value=Name(id='stack'), attr='append'),
+                                args=[Name(id='frame')],
+                                keywords=[])),
+                        Expr(
+                            value=Constant(
+                                value='Function call runs and record the run time of the frame in stack.',
+                                kind=None)),
+                        Assign(targets=[Name(id='start_time')],
+                            value=BinOp(
+                                left=Call(func=Attribute(value=Name(id='time'), attr='time_ns'), args=[], keywords=[]),
+                                op=Div,
+                                right=BinOp(left=Constant(value=10, kind=None),
+                                    op=Pow,
+                                    right=Constant(value=9, kind=None))),
+                            type_comment=None),
+                        Assign(targets=[Name(id='value')],
+                            value=Call(func=Name(id='func'),
+                                args=[Starred(value=Name(id='args'))],
+                                keywords=[keyword(arg=None, value=Name(id='kwargs'))]),
+                            type_comment=None),
+                        Assign(targets=[Name(id='end_time')],
+                            value=BinOp(
+                                left=Call(func=Attribute(value=Name(id='time'), attr='time_ns'), args=[], keywords=[]),
+                                op=Div,
+                                right=BinOp(left=Constant(value=10, kind=None),
+                                    op=Pow,
+                                    right=Constant(value=9, kind=None))),
+                            type_comment=None),
+                        Assign(targets=[Name(id='run_time')],
+                            value=BinOp(left=Name(id='end_time'), op=Sub, right=Name(id='start_time')),
+                            type_comment=None),
+                        Assign(
+                            targets=[Subscript(value=Name(id='frame'), slice=Constant(value='value', kind=None))],
+                            value=Name(id='run_time'),
+                            type_comment=None),
+                        Expr(value=Constant(value='Pop the frame from stack after function call finishes.', kind=None)),
+                        Expr(value=Call(func=Attribute(value=Name(id='stack'), attr='pop'), args=[], keywords=[])),
+                        If(
+                            test=Compare(left=Attribute(value=Name(id='func'), attr='__name__'),
+                                ops=[NotEq],
+                                comparators=[Constant(value='main', kind=None)]),
+                            body=[
+                                Expr(
+                                    value=Constant(
+                                        value='Associate the frame (callee) with its parent frame (caller)',
+                                        kind=None)),
+                                Assign(targets=[Name(id='parent_frame')],
+                                    value=Subscript(value=Name(id='stack'),
+                                        slice=UnaryOp(op=USub, operand=Constant(value=1, kind=None))),
+                                    type_comment=None),
+                                Expr(
+                                    value=Call(
+                                        func=Attribute(
+                                            value=Subscript(value=Name(id='parent_frame'),
+                                                slice=Constant(value='children', kind=None)),
+                                            attr='append'),
+                                        args=[Name(id='frame')],
+                                        keywords=[]))],
+                            orelse=[
+                                Expr(
+                                    value=Constant(
+                                        value='\n            When root function call (ie. main()) finishes, its frame is assigned to root_frame_reference.\n            Then program terminates and stacks.json is generated based on the content of root_frame_reference.\n            ',
+                                        kind=None)),
+                                Global(names=['root_frame_reference']),
+                                Assign(targets=[Name(id='root_frame_reference')],
+                                    value=Name(id='frame'),
+                                    type_comment=None)]),
+                        Return(value=Name(id='value'))],
+                    decorator_list=[
+                        Call(func=Attribute(value=Name(id='functools'), attr='wraps'),
+                            args=[Name(id='func')],
+                            keywords=[])],
+                    returns=None,
+                    type_comment=None),
+                Return(value=Name(id='wrapper'))],
+            decorator_list=[],
+            returns=None,
+            type_comment=None),
+        FunctionDef(name='merge',
+            args=arguments(posonlyargs=[],
+                args=[arg(arg='array', annotation=None, type_comment=None),
+                    arg(arg='left_index', annotation=None, type_comment=None),
+                    arg(arg='right_index', annotation=None, type_comment=None),
+                    arg(arg='middle', annotation=None, type_comment=None)],
+                vararg=None,
+                kwonlyargs=[],
+                kw_defaults=[],
+                kwarg=None,
+                defaults=[]),
+            body=[
+                If(test=Constant(value=True, kind=None),
+                    body=[
+                        Assign(targets=[Name(id='left_copy')],
+                            value=Subscript(value=Name(id='array'),
+                                slice=Slice(lower=Name(id='left_index'),
+                                    upper=BinOp(left=Name(id='middle'), op=Add, right=Constant(value=1, kind=None)),
+                                    step=None)),
+                            type_comment=None),
+                        Assign(targets=[Name(id='reassign_var')],
+                            value=Constant(value=False, kind=None),
+                            type_comment=None),
+                        For(target=Name(id='i'),
+                            iter=Call(func=Name(id='range'),
+                                args=[
+                                    Call(func=Name(id='len'),
+                                        args=[
+                                            Subscript(
+                                                value=Subscript(
+                                                    value=Subscript(value=Name(id='stack'),
+                                                        slice=UnaryOp(op=USub, operand=Constant(value=1, kind=None))),
+                                                    slice=Constant(value='heapAlloc', kind=None)),
+                                                slice=Constant(value='vars', kind=None))],
+                                        keywords=[])],
+                                keywords=[]),
+                            body=[
+                                If(
+                                    test=Compare(
+                                        left=Subscript(
+                                            value=Subscript(
+                                                value=Subscript(
+                                                    value=Subscript(
+                                                        value=Subscript(value=Name(id='stack'),
+                                                            slice=UnaryOp(op=USub,
+                                                                operand=Constant(value=1, kind=None))),
+                                                        slice=Constant(value='heapAlloc', kind=None)),
+                                                    slice=Constant(value='vars', kind=None)),
+                                                slice=Name(id='i')),
+                                            slice=Constant(value='name', kind=None)),
+                                        ops=[Eq],
+                                        comparators=[Constant(value='left_copy', kind=None)]),
+                                    body=[
+                                        Assign(targets=[Name(id='reassign_var')],
+                                            value=Constant(value=True, kind=None),
+                                            type_comment=None),
+                                        Assign(
+                                            targets=[
+                                                Subscript(
+                                                    value=Subscript(
+                                                        value=Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(value=Name(id='stack'),
+                                                                    slice=UnaryOp(op=USub,
+                                                                        operand=Constant(value=1, kind=None))),
+                                                                slice=Constant(value='heapAlloc', kind=None)),
+                                                            slice=Constant(value='vars', kind=None)),
+                                                        slice=Name(id='i')),
+                                                    slice=Constant(value='type', kind=None))],
+                                            value=Attribute(
+                                                value=Call(func=Name(id='type'),
+                                                    args=[Name(id='left_copy')],
+                                                    keywords=[]),
+                                                attr='__name__'),
+                                            type_comment=None),
+                                        Assign(
+                                            targets=[
+                                                Subscript(
+                                                    value=Subscript(
+                                                        value=Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(value=Name(id='stack'),
+                                                                    slice=UnaryOp(op=USub,
+                                                                        operand=Constant(value=1, kind=None))),
+                                                                slice=Constant(value='heapAlloc', kind=None)),
+                                                            slice=Constant(value='vars', kind=None)),
+                                                        slice=Name(id='i')),
+                                                    slice=Constant(value='value', kind=None))],
+                                            value=Call(func=Attribute(value=Name(id='sys'), attr='getsizeof'),
+                                                args=[Name(id='left_copy')],
+                                                keywords=[]),
+                                            type_comment=None)],
+                                    orelse=[])],
+                            orelse=[],
+                            type_comment=None),
+                        If(test=UnaryOp(op=Not, operand=Name(id='reassign_var')),
+                            body=[
+                                Expr(
+                                    value=Call(
+                                        func=Attribute(
+                                            value=Subscript(
+                                                value=Subscript(
+                                                    value=Subscript(value=Name(id='stack'),
+                                                        slice=UnaryOp(op=USub, operand=Constant(value=1, kind=None))),
+                                                    slice=Constant(value='heapAlloc', kind=None)),
+                                                slice=Constant(value='vars', kind=None)),
+                                            attr='append'),
+                                        args=[
+                                            Dict(
+                                                keys=[Constant(value='name', kind=None),
+                                                    Constant(value='type', kind=None),
+                                                    Constant(value='value', kind=None)],
+                                                values=[Constant(value='left_copy', kind=None),
+                                                    Attribute(
+                                                        value=Call(func=Name(id='type'),
+                                                            args=[Name(id='left_copy')],
+                                                            keywords=[]),
+                                                        attr='__name__'),
+                                                    Call(func=Attribute(value=Name(id='sys'), attr='getsizeof'),
+                                                        args=[Name(id='left_copy')],
+                                                        keywords=[])])],
+                                        keywords=[]))],
+                            orelse=[])],
+                    orelse=[]),
+                If(test=Constant(value=True, kind=None),
+                    body=[
+                        Assign(targets=[Name(id='right_copy')],
+                            value=Subscript(value=Name(id='array'),
+                                slice=Slice(
+                                    lower=BinOp(left=Name(id='middle'), op=Add, right=Constant(value=1, kind=None)),
+                                    upper=BinOp(left=Name(id='right_index'),
+                                        op=Add,
+                                        right=Constant(value=1, kind=None)),
+                                    step=None)),
+                            type_comment=None),
+                        Assign(targets=[Name(id='reassign_var')],
+                            value=Constant(value=False, kind=None),
+                            type_comment=None),
+                        For(target=Name(id='i'),
+                            iter=Call(func=Name(id='range'),
+                                args=[
+                                    Call(func=Name(id='len'),
+                                        args=[
+                                            Subscript(
+                                                value=Subscript(
+                                                    value=Subscript(value=Name(id='stack'),
+                                                        slice=UnaryOp(op=USub, operand=Constant(value=1, kind=None))),
+                                                    slice=Constant(value='heapAlloc', kind=None)),
+                                                slice=Constant(value='vars', kind=None))],
+                                        keywords=[])],
+                                keywords=[]),
+                            body=[
+                                If(
+                                    test=Compare(
+                                        left=Subscript(
+                                            value=Subscript(
+                                                value=Subscript(
+                                                    value=Subscript(
+                                                        value=Subscript(value=Name(id='stack'),
+                                                            slice=UnaryOp(op=USub,
+                                                                operand=Constant(value=1, kind=None))),
+                                                        slice=Constant(value='heapAlloc', kind=None)),
+                                                    slice=Constant(value='vars', kind=None)),
+                                                slice=Name(id='i')),
+                                            slice=Constant(value='name', kind=None)),
+                                        ops=[Eq],
+                                        comparators=[Constant(value='right_copy', kind=None)]),
+                                    body=[
+                                        Assign(targets=[Name(id='reassign_var')],
+                                            value=Constant(value=True, kind=None),
+                                            type_comment=None),
+                                        Assign(
+                                            targets=[
+                                                Subscript(
+                                                    value=Subscript(
+                                                        value=Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(value=Name(id='stack'),
+                                                                    slice=UnaryOp(op=USub,
+                                                                        operand=Constant(value=1, kind=None))),
+                                                                slice=Constant(value='heapAlloc', kind=None)),
+                                                            slice=Constant(value='vars', kind=None)),
+                                                        slice=Name(id='i')),
+                                                    slice=Constant(value='type', kind=None))],
+                                            value=Attribute(
+                                                value=Call(func=Name(id='type'),
+                                                    args=[Name(id='right_copy')],
+                                                    keywords=[]),
+                                                attr='__name__'),
+                                            type_comment=None),
+                                        Assign(
+                                            targets=[
+                                                Subscript(
+                                                    value=Subscript(
+                                                        value=Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(value=Name(id='stack'),
+                                                                    slice=UnaryOp(op=USub,
+                                                                        operand=Constant(value=1, kind=None))),
+                                                                slice=Constant(value='heapAlloc', kind=None)),
+                                                            slice=Constant(value='vars', kind=None)),
+                                                        slice=Name(id='i')),
+                                                    slice=Constant(value='value', kind=None))],
+                                            value=Call(func=Attribute(value=Name(id='sys'), attr='getsizeof'),
+                                                args=[Name(id='right_copy')],
+                                                keywords=[]),
+                                            type_comment=None)],
+                                    orelse=[])],
+                            orelse=[],
+                            type_comment=None),
+                        If(test=UnaryOp(op=Not, operand=Name(id='reassign_var')),
+                            body=[
+                                Expr(
+                                    value=Call(
+                                        func=Attribute(
+                                            value=Subscript(
+                                                value=Subscript(
+                                                    value=Subscript(value=Name(id='stack'),
+                                                        slice=UnaryOp(op=USub, operand=Constant(value=1, kind=None))),
+                                                    slice=Constant(value='heapAlloc', kind=None)),
+                                                slice=Constant(value='vars', kind=None)),
+                                            attr='append'),
+                                        args=[
+                                            Dict(
+                                                keys=[Constant(value='name', kind=None),
+                                                    Constant(value='type', kind=None),
+                                                    Constant(value='value', kind=None)],
+                                                values=[Constant(value='right_copy', kind=None),
+                                                    Attribute(
+                                                        value=Call(func=Name(id='type'),
+                                                            args=[Name(id='right_copy')],
+                                                            keywords=[]),
+                                                        attr='__name__'),
+                                                    Call(func=Attribute(value=Name(id='sys'), attr='getsizeof'),
+                                                        args=[Name(id='right_copy')],
+                                                        keywords=[])])],
+                                        keywords=[]))],
+                            orelse=[])],
+                    orelse=[]),
+                If(test=Constant(value=True, kind=None),
+                    body=[
+                        Assign(targets=[Name(id='left_copy_index')],
+                            value=Constant(value=0, kind=None),
+                            type_comment=None),
+                        Assign(targets=[Name(id='reassign_var')],
+                            value=Constant(value=False, kind=None),
+                            type_comment=None),
+                        For(target=Name(id='i'),
+                            iter=Call(func=Name(id='range'),
+                                args=[
+                                    Call(func=Name(id='len'),
+                                        args=[
+                                            Subscript(
+                                                value=Subscript(
+                                                    value=Subscript(value=Name(id='stack'),
+                                                        slice=UnaryOp(op=USub, operand=Constant(value=1, kind=None))),
+                                                    slice=Constant(value='heapAlloc', kind=None)),
+                                                slice=Constant(value='vars', kind=None))],
+                                        keywords=[])],
+                                keywords=[]),
+                            body=[
+                                If(
+                                    test=Compare(
+                                        left=Subscript(
+                                            value=Subscript(
+                                                value=Subscript(
+                                                    value=Subscript(
+                                                        value=Subscript(value=Name(id='stack'),
+                                                            slice=UnaryOp(op=USub,
+                                                                operand=Constant(value=1, kind=None))),
+                                                        slice=Constant(value='heapAlloc', kind=None)),
+                                                    slice=Constant(value='vars', kind=None)),
+                                                slice=Name(id='i')),
+                                            slice=Constant(value='name', kind=None)),
+                                        ops=[Eq],
+                                        comparators=[Constant(value='left_copy_index', kind=None)]),
+                                    body=[
+                                        Assign(targets=[Name(id='reassign_var')],
+                                            value=Constant(value=True, kind=None),
+                                            type_comment=None),
+                                        Assign(
+                                            targets=[
+                                                Subscript(
+                                                    value=Subscript(
+                                                        value=Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(value=Name(id='stack'),
+                                                                    slice=UnaryOp(op=USub,
+                                                                        operand=Constant(value=1, kind=None))),
+                                                                slice=Constant(value='heapAlloc', kind=None)),
+                                                            slice=Constant(value='vars', kind=None)),
+                                                        slice=Name(id='i')),
+                                                    slice=Constant(value='type', kind=None))],
+                                            value=Attribute(
+                                                value=Call(func=Name(id='type'),
+                                                    args=[Name(id='left_copy_index')],
+                                                    keywords=[]),
+                                                attr='__name__'),
+                                            type_comment=None),
+                                        Assign(
+                                            targets=[
+                                                Subscript(
+                                                    value=Subscript(
+                                                        value=Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(value=Name(id='stack'),
+                                                                    slice=UnaryOp(op=USub,
+                                                                        operand=Constant(value=1, kind=None))),
+                                                                slice=Constant(value='heapAlloc', kind=None)),
+                                                            slice=Constant(value='vars', kind=None)),
+                                                        slice=Name(id='i')),
+                                                    slice=Constant(value='value', kind=None))],
+                                            value=Call(func=Attribute(value=Name(id='sys'), attr='getsizeof'),
+                                                args=[Name(id='left_copy_index')],
+                                                keywords=[]),
+                                            type_comment=None)],
+                                    orelse=[])],
+                            orelse=[],
+                            type_comment=None),
+                        If(test=UnaryOp(op=Not, operand=Name(id='reassign_var')),
+                            body=[
+                                Expr(
+                                    value=Call(
+                                        func=Attribute(
+                                            value=Subscript(
+                                                value=Subscript(
+                                                    value=Subscript(value=Name(id='stack'),
+                                                        slice=UnaryOp(op=USub, operand=Constant(value=1, kind=None))),
+                                                    slice=Constant(value='heapAlloc', kind=None)),
+                                                slice=Constant(value='vars', kind=None)),
+                                            attr='append'),
+                                        args=[
+                                            Dict(
+                                                keys=[Constant(value='name', kind=None),
+                                                    Constant(value='type', kind=None),
+                                                    Constant(value='value', kind=None)],
+                                                values=[Constant(value='left_copy_index', kind=None),
+                                                    Attribute(
+                                                        value=Call(func=Name(id='type'),
+                                                            args=[Name(id='left_copy_index')],
+                                                            keywords=[]),
+                                                        attr='__name__'),
+                                                    Call(func=Attribute(value=Name(id='sys'), attr='getsizeof'),
+                                                        args=[Name(id='left_copy_index')],
+                                                        keywords=[])])],
+                                        keywords=[]))],
+                            orelse=[])],
+                    orelse=[]),
+                If(test=Constant(value=True, kind=None),
+                    body=[
+                        Assign(targets=[Name(id='right_copy_index')],
+                            value=Constant(value=0, kind=None),
+                            type_comment=None),
+                        Assign(targets=[Name(id='reassign_var')],
+                            value=Constant(value=False, kind=None),
+                            type_comment=None),
+                        For(target=Name(id='i'),
+                            iter=Call(func=Name(id='range'),
+                                args=[
+                                    Call(func=Name(id='len'),
+                                        args=[
+                                            Subscript(
+                                                value=Subscript(
+                                                    value=Subscript(value=Name(id='stack'),
+                                                        slice=UnaryOp(op=USub, operand=Constant(value=1, kind=None))),
+                                                    slice=Constant(value='heapAlloc', kind=None)),
+                                                slice=Constant(value='vars', kind=None))],
+                                        keywords=[])],
+                                keywords=[]),
+                            body=[
+                                If(
+                                    test=Compare(
+                                        left=Subscript(
+                                            value=Subscript(
+                                                value=Subscript(
+                                                    value=Subscript(
+                                                        value=Subscript(value=Name(id='stack'),
+                                                            slice=UnaryOp(op=USub,
+                                                                operand=Constant(value=1, kind=None))),
+                                                        slice=Constant(value='heapAlloc', kind=None)),
+                                                    slice=Constant(value='vars', kind=None)),
+                                                slice=Name(id='i')),
+                                            slice=Constant(value='name', kind=None)),
+                                        ops=[Eq],
+                                        comparators=[Constant(value='right_copy_index', kind=None)]),
+                                    body=[
+                                        Assign(targets=[Name(id='reassign_var')],
+                                            value=Constant(value=True, kind=None),
+                                            type_comment=None),
+                                        Assign(
+                                            targets=[
+                                                Subscript(
+                                                    value=Subscript(
+                                                        value=Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(value=Name(id='stack'),
+                                                                    slice=UnaryOp(op=USub,
+                                                                        operand=Constant(value=1, kind=None))),
+                                                                slice=Constant(value='heapAlloc', kind=None)),
+                                                            slice=Constant(value='vars', kind=None)),
+                                                        slice=Name(id='i')),
+                                                    slice=Constant(value='type', kind=None))],
+                                            value=Attribute(
+                                                value=Call(func=Name(id='type'),
+                                                    args=[Name(id='right_copy_index')],
+                                                    keywords=[]),
+                                                attr='__name__'),
+                                            type_comment=None),
+                                        Assign(
+                                            targets=[
+                                                Subscript(
+                                                    value=Subscript(
+                                                        value=Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(value=Name(id='stack'),
+                                                                    slice=UnaryOp(op=USub,
+                                                                        operand=Constant(value=1, kind=None))),
+                                                                slice=Constant(value='heapAlloc', kind=None)),
+                                                            slice=Constant(value='vars', kind=None)),
+                                                        slice=Name(id='i')),
+                                                    slice=Constant(value='value', kind=None))],
+                                            value=Call(func=Attribute(value=Name(id='sys'), attr='getsizeof'),
+                                                args=[Name(id='right_copy_index')],
+                                                keywords=[]),
+                                            type_comment=None)],
+                                    orelse=[])],
+                            orelse=[],
+                            type_comment=None),
+                        If(test=UnaryOp(op=Not, operand=Name(id='reassign_var')),
+                            body=[
+                                Expr(
+                                    value=Call(
+                                        func=Attribute(
+                                            value=Subscript(
+                                                value=Subscript(
+                                                    value=Subscript(value=Name(id='stack'),
+                                                        slice=UnaryOp(op=USub, operand=Constant(value=1, kind=None))),
+                                                    slice=Constant(value='heapAlloc', kind=None)),
+                                                slice=Constant(value='vars', kind=None)),
+                                            attr='append'),
+                                        args=[
+                                            Dict(
+                                                keys=[Constant(value='name', kind=None),
+                                                    Constant(value='type', kind=None),
+                                                    Constant(value='value', kind=None)],
+                                                values=[Constant(value='right_copy_index', kind=None),
+                                                    Attribute(
+                                                        value=Call(func=Name(id='type'),
+                                                            args=[Name(id='right_copy_index')],
+                                                            keywords=[]),
+                                                        attr='__name__'),
+                                                    Call(func=Attribute(value=Name(id='sys'), attr='getsizeof'),
+                                                        args=[Name(id='right_copy_index')],
+                                                        keywords=[])])],
+                                        keywords=[]))],
+                            orelse=[])],
+                    orelse=[]),
+                Assign(targets=[Name(id='sorted_index')], value=Name(id='left_index'), type_comment=None),
+                While(
+                    test=BoolOp(op=And,
+                        values=[
+                            Compare(left=Name(id='left_copy_index'),
+                                ops=[Lt],
+                                comparators=[Call(func=Name(id='len'), args=[Name(id='left_copy')], keywords=[])]),
+                            Compare(left=Name(id='right_copy_index'),
+                                ops=[Lt],
+                                comparators=[Call(func=Name(id='len'), args=[Name(id='right_copy')], keywords=[])])]),
+                    body=[
+                        If(
+                            test=Compare(
+                                left=Subscript(value=Name(id='left_copy'), slice=Name(id='left_copy_index')),
+                                ops=[LtE],
+                                comparators=[Subscript(value=Name(id='right_copy'), slice=Name(id='right_copy_index'))]),
+                            body=[
+                                Assign(
+                                    targets=[Subscript(value=Name(id='array'), slice=Name(id='sorted_index'))],
+                                    value=Subscript(value=Name(id='left_copy'), slice=Name(id='left_copy_index')),
+                                    type_comment=None),
+                                If(test=Constant(value=True, kind=None),
+                                    body=[
+                                        Assign(targets=[Name(id='left_copy_index')],
+                                            value=BinOp(left=Name(id='left_copy_index'),
+                                                op=Add,
+                                                right=Constant(value=1, kind=None)),
+                                            type_comment=None),
+                                        Assign(targets=[Name(id='reassign_var')],
+                                            value=Constant(value=False, kind=None),
+                                            type_comment=None),
+                                        For(target=Name(id='i'),
+                                            iter=Call(func=Name(id='range'),
+                                                args=[
+                                                    Call(func=Name(id='len'),
+                                                        args=[
+                                                            Subscript(
+                                                                value=Subscript(
+                                                                    value=Subscript(value=Name(id='stack'),
+                                                                        slice=UnaryOp(op=USub,
+                                                                            operand=Constant(value=1, kind=None))),
+                                                                    slice=Constant(value='heapAlloc', kind=None)),
+                                                                slice=Constant(value='vars', kind=None))],
+                                                        keywords=[])],
+                                                keywords=[]),
+                                            body=[
+                                                If(
+                                                    test=Compare(
+                                                        left=Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(
+                                                                    value=Subscript(
+                                                                        value=Subscript(value=Name(id='stack'),
+                                                                            slice=UnaryOp(op=USub,
+                                                                                operand=Constant(value=1, kind=None))),
+                                                                        slice=Constant(value='heapAlloc', kind=None)),
+                                                                    slice=Constant(value='vars', kind=None)),
+                                                                slice=Name(id='i')),
+                                                            slice=Constant(value='name', kind=None)),
+                                                        ops=[Eq],
+                                                        comparators=[Constant(value='left_copy_index', kind=None)]),
+                                                    body=[
+                                                        Assign(targets=[Name(id='reassign_var')],
+                                                            value=Constant(value=True, kind=None),
+                                                            type_comment=None),
+                                                        Assign(
+                                                            targets=[
+                                                                Subscript(
+                                                                    value=Subscript(
+                                                                        value=Subscript(
+                                                                            value=Subscript(
+                                                                                value=Subscript(value=Name(id='stack'),
+                                                                                    slice=UnaryOp(op=USub,
+                                                                                        operand=Constant(value=1,
+                                                                                            kind=None))),
+                                                                                slice=Constant(value='heapAlloc',
+                                                                                    kind=None)),
+                                                                            slice=Constant(value='vars', kind=None)),
+                                                                        slice=Name(id='i')),
+                                                                    slice=Constant(value='type', kind=None))],
+                                                            value=Attribute(
+                                                                value=Call(func=Name(id='type'),
+                                                                    args=[Name(id='left_copy_index')],
+                                                                    keywords=[]),
+                                                                attr='__name__'),
+                                                            type_comment=None),
+                                                        Assign(
+                                                            targets=[
+                                                                Subscript(
+                                                                    value=Subscript(
+                                                                        value=Subscript(
+                                                                            value=Subscript(
+                                                                                value=Subscript(value=Name(id='stack'),
+                                                                                    slice=UnaryOp(op=USub,
+                                                                                        operand=Constant(value=1,
+                                                                                            kind=None))),
+                                                                                slice=Constant(value='heapAlloc',
+                                                                                    kind=None)),
+                                                                            slice=Constant(value='vars', kind=None)),
+                                                                        slice=Name(id='i')),
+                                                                    slice=Constant(value='value', kind=None))],
+                                                            value=Call(func=Attribute(value=Name(id='sys'), attr='getsizeof'),
+                                                                args=[Name(id='left_copy_index')],
+                                                                keywords=[]),
+                                                            type_comment=None)],
+                                                    orelse=[])],
+                                            orelse=[],
+                                            type_comment=None),
+                                        If(test=UnaryOp(op=Not, operand=Name(id='reassign_var')),
+                                            body=[
+                                                Expr(
+                                                    value=Call(
+                                                        func=Attribute(
+                                                            value=Subscript(
+                                                                value=Subscript(
+                                                                    value=Subscript(value=Name(id='stack'),
+                                                                        slice=UnaryOp(op=USub,
+                                                                            operand=Constant(value=1, kind=None))),
+                                                                    slice=Constant(value='heapAlloc', kind=None)),
+                                                                slice=Constant(value='vars', kind=None)),
+                                                            attr='append'),
+                                                        args=[
+                                                            Dict(
+                                                                keys=[Constant(value='name', kind=None),
+                                                                    Constant(value='type', kind=None),
+                                                                    Constant(value='value', kind=None)],
+                                                                values=[Constant(value='left_copy_index', kind=None),
+                                                                    Attribute(
+                                                                        value=Call(func=Name(id='type'),
+                                                                            args=[Name(id='left_copy_index')],
+                                                                            keywords=[]),
+                                                                        attr='__name__'),
+                                                                    Call(
+                                                                        func=Attribute(value=Name(id='sys'),
+                                                                            attr='getsizeof'),
+                                                                        args=[Name(id='left_copy_index')],
+                                                                        keywords=[])])],
+                                                        keywords=[]))],
+                                            orelse=[])],
+                                    orelse=[])],
+                            orelse=[
+                                Assign(
+                                    targets=[Subscript(value=Name(id='array'), slice=Name(id='sorted_index'))],
+                                    value=Subscript(value=Name(id='right_copy'), slice=Name(id='right_copy_index')),
+                                    type_comment=None),
+                                If(test=Constant(value=True, kind=None),
+                                    body=[
+                                        Assign(targets=[Name(id='right_copy_index')],
+                                            value=BinOp(left=Name(id='right_copy_index'),
+                                                op=Add,
+                                                right=Constant(value=1, kind=None)),
+                                            type_comment=None),
+                                        Assign(targets=[Name(id='reassign_var')],
+                                            value=Constant(value=False, kind=None),
+                                            type_comment=None),
+                                        For(target=Name(id='i'),
+                                            iter=Call(func=Name(id='range'),
+                                                args=[
+                                                    Call(func=Name(id='len'),
+                                                        args=[
+                                                            Subscript(
+                                                                value=Subscript(
+                                                                    value=Subscript(value=Name(id='stack'),
+                                                                        slice=UnaryOp(op=USub,
+                                                                            operand=Constant(value=1, kind=None))),
+                                                                    slice=Constant(value='heapAlloc', kind=None)),
+                                                                slice=Constant(value='vars', kind=None))],
+                                                        keywords=[])],
+                                                keywords=[]),
+                                            body=[
+                                                If(
+                                                    test=Compare(
+                                                        left=Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(
+                                                                    value=Subscript(
+                                                                        value=Subscript(value=Name(id='stack'),
+                                                                            slice=UnaryOp(op=USub,
+                                                                                operand=Constant(value=1, kind=None))),
+                                                                        slice=Constant(value='heapAlloc', kind=None)),
+                                                                    slice=Constant(value='vars', kind=None)),
+                                                                slice=Name(id='i')),
+                                                            slice=Constant(value='name', kind=None)),
+                                                        ops=[Eq],
+                                                        comparators=[Constant(value='right_copy_index', kind=None)]),
+                                                    body=[
+                                                        Assign(targets=[Name(id='reassign_var')],
+                                                            value=Constant(value=True, kind=None),
+                                                            type_comment=None),
+                                                        Assign(
+                                                            targets=[
+                                                                Subscript(
+                                                                    value=Subscript(
+                                                                        value=Subscript(
+                                                                            value=Subscript(
+                                                                                value=Subscript(value=Name(id='stack'),
+                                                                                    slice=UnaryOp(op=USub,
+                                                                                        operand=Constant(value=1,
+                                                                                            kind=None))),
+                                                                                slice=Constant(value='heapAlloc',
+                                                                                    kind=None)),
+                                                                            slice=Constant(value='vars', kind=None)),
+                                                                        slice=Name(id='i')),
+                                                                    slice=Constant(value='type', kind=None))],
+                                                            value=Attribute(
+                                                                value=Call(func=Name(id='type'),
+                                                                    args=[Name(id='right_copy_index')],
+                                                                    keywords=[]),
+                                                                attr='__name__'),
+                                                            type_comment=None),
+                                                        Assign(
+                                                            targets=[
+                                                                Subscript(
+                                                                    value=Subscript(
+                                                                        value=Subscript(
+                                                                            value=Subscript(
+                                                                                value=Subscript(value=Name(id='stack'),
+                                                                                    slice=UnaryOp(op=USub,
+                                                                                        operand=Constant(value=1,
+                                                                                            kind=None))),
+                                                                                slice=Constant(value='heapAlloc',
+                                                                                    kind=None)),
+                                                                            slice=Constant(value='vars', kind=None)),
+                                                                        slice=Name(id='i')),
+                                                                    slice=Constant(value='value', kind=None))],
+                                                            value=Call(func=Attribute(value=Name(id='sys'), attr='getsizeof'),
+                                                                args=[Name(id='right_copy_index')],
+                                                                keywords=[]),
+                                                            type_comment=None)],
+                                                    orelse=[])],
+                                            orelse=[],
+                                            type_comment=None),
+                                        If(test=UnaryOp(op=Not, operand=Name(id='reassign_var')),
+                                            body=[
+                                                Expr(
+                                                    value=Call(
+                                                        func=Attribute(
+                                                            value=Subscript(
+                                                                value=Subscript(
+                                                                    value=Subscript(value=Name(id='stack'),
+                                                                        slice=UnaryOp(op=USub,
+                                                                            operand=Constant(value=1, kind=None))),
+                                                                    slice=Constant(value='heapAlloc', kind=None)),
+                                                                slice=Constant(value='vars', kind=None)),
+                                                            attr='append'),
+                                                        args=[
+                                                            Dict(
+                                                                keys=[Constant(value='name', kind=None),
+                                                                    Constant(value='type', kind=None),
+                                                                    Constant(value='value', kind=None)],
+                                                                values=[Constant(value='right_copy_index', kind=None),
+                                                                    Attribute(
+                                                                        value=Call(func=Name(id='type'),
+                                                                            args=[Name(id='right_copy_index')],
+                                                                            keywords=[]),
+                                                                        attr='__name__'),
+                                                                    Call(
+                                                                        func=Attribute(value=Name(id='sys'),
+                                                                            attr='getsizeof'),
+                                                                        args=[Name(id='right_copy_index')],
+                                                                        keywords=[])])],
+                                                        keywords=[]))],
+                                            orelse=[])],
+                                    orelse=[])]),
+                        If(test=Constant(value=True, kind=None),
+                            body=[
+                                Assign(targets=[Name(id='sorted_index')],
+                                    value=BinOp(left=Name(id='sorted_index'),
+                                        op=Add,
+                                        right=Constant(value=1, kind=None)),
+                                    type_comment=None),
+                                Assign(targets=[Name(id='reassign_var')],
+                                    value=Constant(value=False, kind=None),
+                                    type_comment=None),
+                                For(target=Name(id='i'),
+                                    iter=Call(func=Name(id='range'),
+                                        args=[
+                                            Call(func=Name(id='len'),
+                                                args=[
+                                                    Subscript(
+                                                        value=Subscript(
+                                                            value=Subscript(value=Name(id='stack'),
+                                                                slice=UnaryOp(op=USub,
+                                                                    operand=Constant(value=1, kind=None))),
+                                                            slice=Constant(value='heapAlloc', kind=None)),
+                                                        slice=Constant(value='vars', kind=None))],
+                                                keywords=[])],
+                                        keywords=[]),
+                                    body=[
+                                        If(
+                                            test=Compare(
+                                                left=Subscript(
+                                                    value=Subscript(
+                                                        value=Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(value=Name(id='stack'),
+                                                                    slice=UnaryOp(op=USub,
+                                                                        operand=Constant(value=1, kind=None))),
+                                                                slice=Constant(value='heapAlloc', kind=None)),
+                                                            slice=Constant(value='vars', kind=None)),
+                                                        slice=Name(id='i')),
+                                                    slice=Constant(value='name', kind=None)),
+                                                ops=[Eq],
+                                                comparators=[Constant(value='sorted_index', kind=None)]),
+                                            body=[
+                                                Assign(targets=[Name(id='reassign_var')],
+                                                    value=Constant(value=True, kind=None),
+                                                    type_comment=None),
+                                                Assign(
+                                                    targets=[
+                                                        Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(
+                                                                    value=Subscript(
+                                                                        value=Subscript(value=Name(id='stack'),
+                                                                            slice=UnaryOp(op=USub,
+                                                                                operand=Constant(value=1, kind=None))),
+                                                                        slice=Constant(value='heapAlloc', kind=None)),
+                                                                    slice=Constant(value='vars', kind=None)),
+                                                                slice=Name(id='i')),
+                                                            slice=Constant(value='type', kind=None))],
+                                                    value=Attribute(
+                                                        value=Call(func=Name(id='type'),
+                                                            args=[Name(id='sorted_index')],
+                                                            keywords=[]),
+                                                        attr='__name__'),
+                                                    type_comment=None),
+                                                Assign(
+                                                    targets=[
+                                                        Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(
+                                                                    value=Subscript(
+                                                                        value=Subscript(value=Name(id='stack'),
+                                                                            slice=UnaryOp(op=USub,
+                                                                                operand=Constant(value=1, kind=None))),
+                                                                        slice=Constant(value='heapAlloc', kind=None)),
+                                                                    slice=Constant(value='vars', kind=None)),
+                                                                slice=Name(id='i')),
+                                                            slice=Constant(value='value', kind=None))],
+                                                    value=Call(func=Attribute(value=Name(id='sys'), attr='getsizeof'),
+                                                        args=[Name(id='sorted_index')],
+                                                        keywords=[]),
+                                                    type_comment=None)],
+                                            orelse=[])],
+                                    orelse=[],
+                                    type_comment=None),
+                                If(test=UnaryOp(op=Not, operand=Name(id='reassign_var')),
+                                    body=[
+                                        Expr(
+                                            value=Call(
+                                                func=Attribute(
+                                                    value=Subscript(
+                                                        value=Subscript(
+                                                            value=Subscript(value=Name(id='stack'),
+                                                                slice=UnaryOp(op=USub,
+                                                                    operand=Constant(value=1, kind=None))),
+                                                            slice=Constant(value='heapAlloc', kind=None)),
+                                                        slice=Constant(value='vars', kind=None)),
+                                                    attr='append'),
+                                                args=[
+                                                    Dict(
+                                                        keys=[Constant(value='name', kind=None),
+                                                            Constant(value='type', kind=None),
+                                                            Constant(value='value', kind=None)],
+                                                        values=[Constant(value='sorted_index', kind=None),
+                                                            Attribute(
+                                                                value=Call(func=Name(id='type'),
+                                                                    args=[Name(id='sorted_index')],
+                                                                    keywords=[]),
+                                                                attr='__name__'),
+                                                            Call(func=Attribute(value=Name(id='sys'), attr='getsizeof'),
+                                                                args=[Name(id='sorted_index')],
+                                                                keywords=[])])],
+                                                keywords=[]))],
+                                    orelse=[])],
+                            orelse=[])],
+                    orelse=[]),
+                While(
+                    test=Compare(left=Name(id='left_copy_index'),
+                        ops=[Lt],
+                        comparators=[Call(func=Name(id='len'), args=[Name(id='left_copy')], keywords=[])]),
+                    body=[
+                        Assign(
+                            targets=[Subscript(value=Name(id='array'), slice=Name(id='sorted_index'))],
+                            value=Subscript(value=Name(id='left_copy'), slice=Name(id='left_copy_index')),
+                            type_comment=None),
+                        If(test=Constant(value=True, kind=None),
+                            body=[
+                                Assign(targets=[Name(id='left_copy_index')],
+                                    value=BinOp(left=Name(id='left_copy_index'),
+                                        op=Add,
+                                        right=Constant(value=1, kind=None)),
+                                    type_comment=None),
+                                Assign(targets=[Name(id='reassign_var')],
+                                    value=Constant(value=False, kind=None),
+                                    type_comment=None),
+                                For(target=Name(id='i'),
+                                    iter=Call(func=Name(id='range'),
+                                        args=[
+                                            Call(func=Name(id='len'),
+                                                args=[
+                                                    Subscript(
+                                                        value=Subscript(
+                                                            value=Subscript(value=Name(id='stack'),
+                                                                slice=UnaryOp(op=USub,
+                                                                    operand=Constant(value=1, kind=None))),
+                                                            slice=Constant(value='heapAlloc', kind=None)),
+                                                        slice=Constant(value='vars', kind=None))],
+                                                keywords=[])],
+                                        keywords=[]),
+                                    body=[
+                                        If(
+                                            test=Compare(
+                                                left=Subscript(
+                                                    value=Subscript(
+                                                        value=Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(value=Name(id='stack'),
+                                                                    slice=UnaryOp(op=USub,
+                                                                        operand=Constant(value=1, kind=None))),
+                                                                slice=Constant(value='heapAlloc', kind=None)),
+                                                            slice=Constant(value='vars', kind=None)),
+                                                        slice=Name(id='i')),
+                                                    slice=Constant(value='name', kind=None)),
+                                                ops=[Eq],
+                                                comparators=[Constant(value='left_copy_index', kind=None)]),
+                                            body=[
+                                                Assign(targets=[Name(id='reassign_var')],
+                                                    value=Constant(value=True, kind=None),
+                                                    type_comment=None),
+                                                Assign(
+                                                    targets=[
+                                                        Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(
+                                                                    value=Subscript(
+                                                                        value=Subscript(value=Name(id='stack'),
+                                                                            slice=UnaryOp(op=USub,
+                                                                                operand=Constant(value=1, kind=None))),
+                                                                        slice=Constant(value='heapAlloc', kind=None)),
+                                                                    slice=Constant(value='vars', kind=None)),
+                                                                slice=Name(id='i')),
+                                                            slice=Constant(value='type', kind=None))],
+                                                    value=Attribute(
+                                                        value=Call(func=Name(id='type'),
+                                                            args=[Name(id='left_copy_index')],
+                                                            keywords=[]),
+                                                        attr='__name__'),
+                                                    type_comment=None),
+                                                Assign(
+                                                    targets=[
+                                                        Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(
+                                                                    value=Subscript(
+                                                                        value=Subscript(value=Name(id='stack'),
+                                                                            slice=UnaryOp(op=USub,
+                                                                                operand=Constant(value=1, kind=None))),
+                                                                        slice=Constant(value='heapAlloc', kind=None)),
+                                                                    slice=Constant(value='vars', kind=None)),
+                                                                slice=Name(id='i')),
+                                                            slice=Constant(value='value', kind=None))],
+                                                    value=Call(func=Attribute(value=Name(id='sys'), attr='getsizeof'),
+                                                        args=[Name(id='left_copy_index')],
+                                                        keywords=[]),
+                                                    type_comment=None)],
+                                            orelse=[])],
+                                    orelse=[],
+                                    type_comment=None),
+                                If(test=UnaryOp(op=Not, operand=Name(id='reassign_var')),
+                                    body=[
+                                        Expr(
+                                            value=Call(
+                                                func=Attribute(
+                                                    value=Subscript(
+                                                        value=Subscript(
+                                                            value=Subscript(value=Name(id='stack'),
+                                                                slice=UnaryOp(op=USub,
+                                                                    operand=Constant(value=1, kind=None))),
+                                                            slice=Constant(value='heapAlloc', kind=None)),
+                                                        slice=Constant(value='vars', kind=None)),
+                                                    attr='append'),
+                                                args=[
+                                                    Dict(
+                                                        keys=[Constant(value='name', kind=None),
+                                                            Constant(value='type', kind=None),
+                                                            Constant(value='value', kind=None)],
+                                                        values=[Constant(value='left_copy_index', kind=None),
+                                                            Attribute(
+                                                                value=Call(func=Name(id='type'),
+                                                                    args=[Name(id='left_copy_index')],
+                                                                    keywords=[]),
+                                                                attr='__name__'),
+                                                            Call(func=Attribute(value=Name(id='sys'), attr='getsizeof'),
+                                                                args=[Name(id='left_copy_index')],
+                                                                keywords=[])])],
+                                                keywords=[]))],
+                                    orelse=[])],
+                            orelse=[]),
+                        If(test=Constant(value=True, kind=None),
+                            body=[
+                                Assign(targets=[Name(id='sorted_index')],
+                                    value=BinOp(left=Name(id='sorted_index'),
+                                        op=Add,
+                                        right=Constant(value=1, kind=None)),
+                                    type_comment=None),
+                                Assign(targets=[Name(id='reassign_var')],
+                                    value=Constant(value=False, kind=None),
+                                    type_comment=None),
+                                For(target=Name(id='i'),
+                                    iter=Call(func=Name(id='range'),
+                                        args=[
+                                            Call(func=Name(id='len'),
+                                                args=[
+                                                    Subscript(
+                                                        value=Subscript(
+                                                            value=Subscript(value=Name(id='stack'),
+                                                                slice=UnaryOp(op=USub,
+                                                                    operand=Constant(value=1, kind=None))),
+                                                            slice=Constant(value='heapAlloc', kind=None)),
+                                                        slice=Constant(value='vars', kind=None))],
+                                                keywords=[])],
+                                        keywords=[]),
+                                    body=[
+                                        If(
+                                            test=Compare(
+                                                left=Subscript(
+                                                    value=Subscript(
+                                                        value=Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(value=Name(id='stack'),
+                                                                    slice=UnaryOp(op=USub,
+                                                                        operand=Constant(value=1, kind=None))),
+                                                                slice=Constant(value='heapAlloc', kind=None)),
+                                                            slice=Constant(value='vars', kind=None)),
+                                                        slice=Name(id='i')),
+                                                    slice=Constant(value='name', kind=None)),
+                                                ops=[Eq],
+                                                comparators=[Constant(value='sorted_index', kind=None)]),
+                                            body=[
+                                                Assign(targets=[Name(id='reassign_var')],
+                                                    value=Constant(value=True, kind=None),
+                                                    type_comment=None),
+                                                Assign(
+                                                    targets=[
+                                                        Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(
+                                                                    value=Subscript(
+                                                                        value=Subscript(value=Name(id='stack'),
+                                                                            slice=UnaryOp(op=USub,
+                                                                                operand=Constant(value=1, kind=None))),
+                                                                        slice=Constant(value='heapAlloc', kind=None)),
+                                                                    slice=Constant(value='vars', kind=None)),
+                                                                slice=Name(id='i')),
+                                                            slice=Constant(value='type', kind=None))],
+                                                    value=Attribute(
+                                                        value=Call(func=Name(id='type'),
+                                                            args=[Name(id='sorted_index')],
+                                                            keywords=[]),
+                                                        attr='__name__'),
+                                                    type_comment=None),
+                                                Assign(
+                                                    targets=[
+                                                        Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(
+                                                                    value=Subscript(
+                                                                        value=Subscript(value=Name(id='stack'),
+                                                                            slice=UnaryOp(op=USub,
+                                                                                operand=Constant(value=1, kind=None))),
+                                                                        slice=Constant(value='heapAlloc', kind=None)),
+                                                                    slice=Constant(value='vars', kind=None)),
+                                                                slice=Name(id='i')),
+                                                            slice=Constant(value='value', kind=None))],
+                                                    value=Call(func=Attribute(value=Name(id='sys'), attr='getsizeof'),
+                                                        args=[Name(id='sorted_index')],
+                                                        keywords=[]),
+                                                    type_comment=None)],
+                                            orelse=[])],
+                                    orelse=[],
+                                    type_comment=None),
+                                If(test=UnaryOp(op=Not, operand=Name(id='reassign_var')),
+                                    body=[
+                                        Expr(
+                                            value=Call(
+                                                func=Attribute(
+                                                    value=Subscript(
+                                                        value=Subscript(
+                                                            value=Subscript(value=Name(id='stack'),
+                                                                slice=UnaryOp(op=USub,
+                                                                    operand=Constant(value=1, kind=None))),
+                                                            slice=Constant(value='heapAlloc', kind=None)),
+                                                        slice=Constant(value='vars', kind=None)),
+                                                    attr='append'),
+                                                args=[
+                                                    Dict(
+                                                        keys=[Constant(value='name', kind=None),
+                                                            Constant(value='type', kind=None),
+                                                            Constant(value='value', kind=None)],
+                                                        values=[Constant(value='sorted_index', kind=None),
+                                                            Attribute(
+                                                                value=Call(func=Name(id='type'),
+                                                                    args=[Name(id='sorted_index')],
+                                                                    keywords=[]),
+                                                                attr='__name__'),
+                                                            Call(func=Attribute(value=Name(id='sys'), attr='getsizeof'),
+                                                                args=[Name(id='sorted_index')],
+                                                                keywords=[])])],
+                                                keywords=[]))],
+                                    orelse=[])],
+                            orelse=[])],
+                    orelse=[]),
+                While(
+                    test=Compare(left=Name(id='right_copy_index'),
+                        ops=[Lt],
+                        comparators=[Call(func=Name(id='len'), args=[Name(id='right_copy')], keywords=[])]),
+                    body=[
+                        Assign(
+                            targets=[Subscript(value=Name(id='array'), slice=Name(id='sorted_index'))],
+                            value=Subscript(value=Name(id='right_copy'), slice=Name(id='right_copy_index')),
+                            type_comment=None),
+                        If(test=Constant(value=True, kind=None),
+                            body=[
+                                Assign(targets=[Name(id='right_copy_index')],
+                                    value=BinOp(left=Name(id='right_copy_index'),
+                                        op=Add,
+                                        right=Constant(value=1, kind=None)),
+                                    type_comment=None),
+                                Assign(targets=[Name(id='reassign_var')],
+                                    value=Constant(value=False, kind=None),
+                                    type_comment=None),
+                                For(target=Name(id='i'),
+                                    iter=Call(func=Name(id='range'),
+                                        args=[
+                                            Call(func=Name(id='len'),
+                                                args=[
+                                                    Subscript(
+                                                        value=Subscript(
+                                                            value=Subscript(value=Name(id='stack'),
+                                                                slice=UnaryOp(op=USub,
+                                                                    operand=Constant(value=1, kind=None))),
+                                                            slice=Constant(value='heapAlloc', kind=None)),
+                                                        slice=Constant(value='vars', kind=None))],
+                                                keywords=[])],
+                                        keywords=[]),
+                                    body=[
+                                        If(
+                                            test=Compare(
+                                                left=Subscript(
+                                                    value=Subscript(
+                                                        value=Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(value=Name(id='stack'),
+                                                                    slice=UnaryOp(op=USub,
+                                                                        operand=Constant(value=1, kind=None))),
+                                                                slice=Constant(value='heapAlloc', kind=None)),
+                                                            slice=Constant(value='vars', kind=None)),
+                                                        slice=Name(id='i')),
+                                                    slice=Constant(value='name', kind=None)),
+                                                ops=[Eq],
+                                                comparators=[Constant(value='right_copy_index', kind=None)]),
+                                            body=[
+                                                Assign(targets=[Name(id='reassign_var')],
+                                                    value=Constant(value=True, kind=None),
+                                                    type_comment=None),
+                                                Assign(
+                                                    targets=[
+                                                        Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(
+                                                                    value=Subscript(
+                                                                        value=Subscript(value=Name(id='stack'),
+                                                                            slice=UnaryOp(op=USub,
+                                                                                operand=Constant(value=1, kind=None))),
+                                                                        slice=Constant(value='heapAlloc', kind=None)),
+                                                                    slice=Constant(value='vars', kind=None)),
+                                                                slice=Name(id='i')),
+                                                            slice=Constant(value='type', kind=None))],
+                                                    value=Attribute(
+                                                        value=Call(func=Name(id='type'),
+                                                            args=[Name(id='right_copy_index')],
+                                                            keywords=[]),
+                                                        attr='__name__'),
+                                                    type_comment=None),
+                                                Assign(
+                                                    targets=[
+                                                        Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(
+                                                                    value=Subscript(
+                                                                        value=Subscript(value=Name(id='stack'),
+                                                                            slice=UnaryOp(op=USub,
+                                                                                operand=Constant(value=1, kind=None))),
+                                                                        slice=Constant(value='heapAlloc', kind=None)),
+                                                                    slice=Constant(value='vars', kind=None)),
+                                                                slice=Name(id='i')),
+                                                            slice=Constant(value='value', kind=None))],
+                                                    value=Call(func=Attribute(value=Name(id='sys'), attr='getsizeof'),
+                                                        args=[Name(id='right_copy_index')],
+                                                        keywords=[]),
+                                                    type_comment=None)],
+                                            orelse=[])],
+                                    orelse=[],
+                                    type_comment=None),
+                                If(test=UnaryOp(op=Not, operand=Name(id='reassign_var')),
+                                    body=[
+                                        Expr(
+                                            value=Call(
+                                                func=Attribute(
+                                                    value=Subscript(
+                                                        value=Subscript(
+                                                            value=Subscript(value=Name(id='stack'),
+                                                                slice=UnaryOp(op=USub,
+                                                                    operand=Constant(value=1, kind=None))),
+                                                            slice=Constant(value='heapAlloc', kind=None)),
+                                                        slice=Constant(value='vars', kind=None)),
+                                                    attr='append'),
+                                                args=[
+                                                    Dict(
+                                                        keys=[Constant(value='name', kind=None),
+                                                            Constant(value='type', kind=None),
+                                                            Constant(value='value', kind=None)],
+                                                        values=[Constant(value='right_copy_index', kind=None),
+                                                            Attribute(
+                                                                value=Call(func=Name(id='type'),
+                                                                    args=[Name(id='right_copy_index')],
+                                                                    keywords=[]),
+                                                                attr='__name__'),
+                                                            Call(func=Attribute(value=Name(id='sys'), attr='getsizeof'),
+                                                                args=[Name(id='right_copy_index')],
+                                                                keywords=[])])],
+                                                keywords=[]))],
+                                    orelse=[])],
+                            orelse=[]),
+                        If(test=Constant(value=True, kind=None),
+                            body=[
+                                Assign(targets=[Name(id='sorted_index')],
+                                    value=BinOp(left=Name(id='sorted_index'),
+                                        op=Add,
+                                        right=Constant(value=1, kind=None)),
+                                    type_comment=None),
+                                Assign(targets=[Name(id='reassign_var')],
+                                    value=Constant(value=False, kind=None),
+                                    type_comment=None),
+                                For(target=Name(id='i'),
+                                    iter=Call(func=Name(id='range'),
+                                        args=[
+                                            Call(func=Name(id='len'),
+                                                args=[
+                                                    Subscript(
+                                                        value=Subscript(
+                                                            value=Subscript(value=Name(id='stack'),
+                                                                slice=UnaryOp(op=USub,
+                                                                    operand=Constant(value=1, kind=None))),
+                                                            slice=Constant(value='heapAlloc', kind=None)),
+                                                        slice=Constant(value='vars', kind=None))],
+                                                keywords=[])],
+                                        keywords=[]),
+                                    body=[
+                                        If(
+                                            test=Compare(
+                                                left=Subscript(
+                                                    value=Subscript(
+                                                        value=Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(value=Name(id='stack'),
+                                                                    slice=UnaryOp(op=USub,
+                                                                        operand=Constant(value=1, kind=None))),
+                                                                slice=Constant(value='heapAlloc', kind=None)),
+                                                            slice=Constant(value='vars', kind=None)),
+                                                        slice=Name(id='i')),
+                                                    slice=Constant(value='name', kind=None)),
+                                                ops=[Eq],
+                                                comparators=[Constant(value='sorted_index', kind=None)]),
+                                            body=[
+                                                Assign(targets=[Name(id='reassign_var')],
+                                                    value=Constant(value=True, kind=None),
+                                                    type_comment=None),
+                                                Assign(
+                                                    targets=[
+                                                        Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(
+                                                                    value=Subscript(
+                                                                        value=Subscript(value=Name(id='stack'),
+                                                                            slice=UnaryOp(op=USub,
+                                                                                operand=Constant(value=1, kind=None))),
+                                                                        slice=Constant(value='heapAlloc', kind=None)),
+                                                                    slice=Constant(value='vars', kind=None)),
+                                                                slice=Name(id='i')),
+                                                            slice=Constant(value='type', kind=None))],
+                                                    value=Attribute(
+                                                        value=Call(func=Name(id='type'),
+                                                            args=[Name(id='sorted_index')],
+                                                            keywords=[]),
+                                                        attr='__name__'),
+                                                    type_comment=None),
+                                                Assign(
+                                                    targets=[
+                                                        Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(
+                                                                    value=Subscript(
+                                                                        value=Subscript(value=Name(id='stack'),
+                                                                            slice=UnaryOp(op=USub,
+                                                                                operand=Constant(value=1, kind=None))),
+                                                                        slice=Constant(value='heapAlloc', kind=None)),
+                                                                    slice=Constant(value='vars', kind=None)),
+                                                                slice=Name(id='i')),
+                                                            slice=Constant(value='value', kind=None))],
+                                                    value=Call(func=Attribute(value=Name(id='sys'), attr='getsizeof'),
+                                                        args=[Name(id='sorted_index')],
+                                                        keywords=[]),
+                                                    type_comment=None)],
+                                            orelse=[])],
+                                    orelse=[],
+                                    type_comment=None),
+                                If(test=UnaryOp(op=Not, operand=Name(id='reassign_var')),
+                                    body=[
+                                        Expr(
+                                            value=Call(
+                                                func=Attribute(
+                                                    value=Subscript(
+                                                        value=Subscript(
+                                                            value=Subscript(value=Name(id='stack'),
+                                                                slice=UnaryOp(op=USub,
+                                                                    operand=Constant(value=1, kind=None))),
+                                                            slice=Constant(value='heapAlloc', kind=None)),
+                                                        slice=Constant(value='vars', kind=None)),
+                                                    attr='append'),
+                                                args=[
+                                                    Dict(
+                                                        keys=[Constant(value='name', kind=None),
+                                                            Constant(value='type', kind=None),
+                                                            Constant(value='value', kind=None)],
+                                                        values=[Constant(value='sorted_index', kind=None),
+                                                            Attribute(
+                                                                value=Call(func=Name(id='type'),
+                                                                    args=[Name(id='sorted_index')],
+                                                                    keywords=[]),
+                                                                attr='__name__'),
+                                                            Call(func=Attribute(value=Name(id='sys'), attr='getsizeof'),
+                                                                args=[Name(id='sorted_index')],
+                                                                keywords=[])])],
+                                                keywords=[]))],
+                                    orelse=[])],
+                            orelse=[])],
+                    orelse=[])],
+            decorator_list=[Name(id='consumption_tracker')],
+            returns=None,
+            type_comment=None),
+        FunctionDef(name='merge_sort',
+            args=arguments(posonlyargs=[],
+                args=[arg(arg='array', annotation=None, type_comment=None),
+                    arg(arg='left_index', annotation=None, type_comment=None),
+                    arg(arg='right_index', annotation=None, type_comment=None)],
+                vararg=None,
+                kwonlyargs=[],
+                kw_defaults=[],
+                kwarg=None,
+                defaults=[]),
+            body=[
+                If(
+                    test=Compare(left=Name(id='left_index'), ops=[GtE], comparators=[Name(id='right_index')]),
+                    body=[Return(value=None)],
+                    orelse=[]),
+                If(test=Constant(value=True, kind=None),
+                    body=[
+                        Assign(targets=[Name(id='middle')],
+                            value=BinOp(
+                                left=BinOp(left=Name(id='left_index'), op=Add, right=Name(id='right_index')),
+                                op=FloorDiv,
+                                right=Constant(value=2, kind=None)),
+                            type_comment=None),
+                        Assign(targets=[Name(id='reassign_var')],
+                            value=Constant(value=False, kind=None),
+                            type_comment=None),
+                        For(target=Name(id='i'),
+                            iter=Call(func=Name(id='range'),
+                                args=[
+                                    Call(func=Name(id='len'),
+                                        args=[
+                                            Subscript(
+                                                value=Subscript(
+                                                    value=Subscript(value=Name(id='stack'),
+                                                        slice=UnaryOp(op=USub, operand=Constant(value=1, kind=None))),
+                                                    slice=Constant(value='heapAlloc', kind=None)),
+                                                slice=Constant(value='vars', kind=None))],
+                                        keywords=[])],
+                                keywords=[]),
+                            body=[
+                                If(
+                                    test=Compare(
+                                        left=Subscript(
+                                            value=Subscript(
+                                                value=Subscript(
+                                                    value=Subscript(
+                                                        value=Subscript(value=Name(id='stack'),
+                                                            slice=UnaryOp(op=USub,
+                                                                operand=Constant(value=1, kind=None))),
+                                                        slice=Constant(value='heapAlloc', kind=None)),
+                                                    slice=Constant(value='vars', kind=None)),
+                                                slice=Name(id='i')),
+                                            slice=Constant(value='name', kind=None)),
+                                        ops=[Eq],
+                                        comparators=[Constant(value='middle', kind=None)]),
+                                    body=[
+                                        Assign(targets=[Name(id='reassign_var')],
+                                            value=Constant(value=True, kind=None),
+                                            type_comment=None),
+                                        Assign(
+                                            targets=[
+                                                Subscript(
+                                                    value=Subscript(
+                                                        value=Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(value=Name(id='stack'),
+                                                                    slice=UnaryOp(op=USub,
+                                                                        operand=Constant(value=1, kind=None))),
+                                                                slice=Constant(value='heapAlloc', kind=None)),
+                                                            slice=Constant(value='vars', kind=None)),
+                                                        slice=Name(id='i')),
+                                                    slice=Constant(value='type', kind=None))],
+                                            value=Attribute(
+                                                value=Call(func=Name(id='type'), args=[Name(id='middle')], keywords=[]),
+                                                attr='__name__'),
+                                            type_comment=None),
+                                        Assign(
+                                            targets=[
+                                                Subscript(
+                                                    value=Subscript(
+                                                        value=Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(value=Name(id='stack'),
+                                                                    slice=UnaryOp(op=USub,
+                                                                        operand=Constant(value=1, kind=None))),
+                                                                slice=Constant(value='heapAlloc', kind=None)),
+                                                            slice=Constant(value='vars', kind=None)),
+                                                        slice=Name(id='i')),
+                                                    slice=Constant(value='value', kind=None))],
+                                            value=Call(func=Attribute(value=Name(id='sys'), attr='getsizeof'),
+                                                args=[Name(id='middle')],
+                                                keywords=[]),
+                                            type_comment=None)],
+                                    orelse=[])],
+                            orelse=[],
+                            type_comment=None),
+                        If(test=UnaryOp(op=Not, operand=Name(id='reassign_var')),
+                            body=[
+                                Expr(
+                                    value=Call(
+                                        func=Attribute(
+                                            value=Subscript(
+                                                value=Subscript(
+                                                    value=Subscript(value=Name(id='stack'),
+                                                        slice=UnaryOp(op=USub, operand=Constant(value=1, kind=None))),
+                                                    slice=Constant(value='heapAlloc', kind=None)),
+                                                slice=Constant(value='vars', kind=None)),
+                                            attr='append'),
+                                        args=[
+                                            Dict(
+                                                keys=[Constant(value='name', kind=None),
+                                                    Constant(value='type', kind=None),
+                                                    Constant(value='value', kind=None)],
+                                                values=[Constant(value='middle', kind=None),
+                                                    Attribute(
+                                                        value=Call(func=Name(id='type'),
+                                                            args=[Name(id='middle')],
+                                                            keywords=[]),
+                                                        attr='__name__'),
+                                                    Call(func=Attribute(value=Name(id='sys'), attr='getsizeof'),
+                                                        args=[Name(id='middle')],
+                                                        keywords=[])])],
+                                        keywords=[]))],
+                            orelse=[])],
+                    orelse=[]),
+                Expr(
+                    value=Call(func=Name(id='merge_sort'),
+                        args=[Name(id='array'), Name(id='left_index'), Name(id='middle')],
+                        keywords=[])),
+                Expr(
+                    value=Call(func=Name(id='merge_sort'),
+                        args=[Name(id='array'),
+                            BinOp(left=Name(id='middle'), op=Add, right=Constant(value=1, kind=None)),
+                            Name(id='right_index')],
+                        keywords=[])),
+                Expr(
+                    value=Call(func=Name(id='merge'),
+                        args=[Name(id='array'), Name(id='left_index'), Name(id='right_index'), Name(id='middle')],
+                        keywords=[]))],
+            decorator_list=[Name(id='consumption_tracker')],
+            returns=None,
+            type_comment=None),
+        FunctionDef(name='main',
+            args=arguments(posonlyargs=[],
+                args=[],
+                vararg=None,
+                kwonlyargs=[],
+                kw_defaults=[],
+                kwarg=None,
+                defaults=[]),
+            body=[
+                If(test=Constant(value=True, kind=None),
+                    body=[
+                        Assign(targets=[Name(id='array')],
+                            value=List(
+                                elts=[Constant(value=33, kind=None),
+                                    Constant(value=42, kind=None),
+                                    Constant(value=9, kind=None),
+                                    Constant(value=37, kind=None),
+                                    Constant(value=8, kind=None),
+                                    Constant(value=47, kind=None),
+                                    Constant(value=5, kind=None),
+                                    Constant(value=29, kind=None),
+                                    Constant(value=49, kind=None),
+                                    Constant(value=31, kind=None),
+                                    Constant(value=4, kind=None),
+                                    Constant(value=48, kind=None),
+                                    Constant(value=16, kind=None),
+                                    Constant(value=22, kind=None),
+                                    Constant(value=26, kind=None),
+                                    Constant(value=1, kind=None),
+                                    Constant(value=2, kind=None),
+                                    Constant(value=4, kind=None),
+                                    Constant(value=3, kind=None),
+                                    Constant(value=5, kind=None),
+                                    Constant(value=9, kind=None),
+                                    Constant(value=3, kind=None),
+                                    Constant(value=3, kind=None),
+                                    Constant(value=8, kind=None),
+                                    Constant(value=7, kind=None),
+                                    Constant(value=6, kind=None),
+                                    Constant(value=10, kind=None),
+                                    Constant(value=11, kind=None),
+                                    Constant(value=100, kind=None),
+                                    Constant(value=99, kind=None)]),
+                            type_comment=None),
+                        Assign(targets=[Name(id='reassign_var')],
+                            value=Constant(value=False, kind=None),
+                            type_comment=None),
+                        For(target=Name(id='i'),
+                            iter=Call(func=Name(id='range'),
+                                args=[
+                                    Call(func=Name(id='len'),
+                                        args=[
+                                            Subscript(
+                                                value=Subscript(
+                                                    value=Subscript(value=Name(id='stack'),
+                                                        slice=UnaryOp(op=USub, operand=Constant(value=1, kind=None))),
+                                                    slice=Constant(value='heapAlloc', kind=None)),
+                                                slice=Constant(value='vars', kind=None))],
+                                        keywords=[])],
+                                keywords=[]),
+                            body=[
+                                If(
+                                    test=Compare(
+                                        left=Subscript(
+                                            value=Subscript(
+                                                value=Subscript(
+                                                    value=Subscript(
+                                                        value=Subscript(value=Name(id='stack'),
+                                                            slice=UnaryOp(op=USub,
+                                                                operand=Constant(value=1, kind=None))),
+                                                        slice=Constant(value='heapAlloc', kind=None)),
+                                                    slice=Constant(value='vars', kind=None)),
+                                                slice=Name(id='i')),
+                                            slice=Constant(value='name', kind=None)),
+                                        ops=[Eq],
+                                        comparators=[Constant(value='array', kind=None)]),
+                                    body=[
+                                        Assign(targets=[Name(id='reassign_var')],
+                                            value=Constant(value=True, kind=None),
+                                            type_comment=None),
+                                        Assign(
+                                            targets=[
+                                                Subscript(
+                                                    value=Subscript(
+                                                        value=Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(value=Name(id='stack'),
+                                                                    slice=UnaryOp(op=USub,
+                                                                        operand=Constant(value=1, kind=None))),
+                                                                slice=Constant(value='heapAlloc', kind=None)),
+                                                            slice=Constant(value='vars', kind=None)),
+                                                        slice=Name(id='i')),
+                                                    slice=Constant(value='type', kind=None))],
+                                            value=Attribute(
+                                                value=Call(func=Name(id='type'), args=[Name(id='array')], keywords=[]),
+                                                attr='__name__'),
+                                            type_comment=None),
+                                        Assign(
+                                            targets=[
+                                                Subscript(
+                                                    value=Subscript(
+                                                        value=Subscript(
+                                                            value=Subscript(
+                                                                value=Subscript(value=Name(id='stack'),
+                                                                    slice=UnaryOp(op=USub,
+                                                                        operand=Constant(value=1, kind=None))),
+                                                                slice=Constant(value='heapAlloc', kind=None)),
+                                                            slice=Constant(value='vars', kind=None)),
+                                                        slice=Name(id='i')),
+                                                    slice=Constant(value='value', kind=None))],
+                                            value=Call(func=Attribute(value=Name(id='sys'), attr='getsizeof'),
+                                                args=[Name(id='array')],
+                                                keywords=[]),
+                                            type_comment=None)],
+                                    orelse=[])],
+                            orelse=[],
+                            type_comment=None),
+                        If(test=UnaryOp(op=Not, operand=Name(id='reassign_var')),
+                            body=[
+                                Expr(
+                                    value=Call(
+                                        func=Attribute(
+                                            value=Subscript(
+                                                value=Subscript(
+                                                    value=Subscript(value=Name(id='stack'),
+                                                        slice=UnaryOp(op=USub, operand=Constant(value=1, kind=None))),
+                                                    slice=Constant(value='heapAlloc', kind=None)),
+                                                slice=Constant(value='vars', kind=None)),
+                                            attr='append'),
+                                        args=[
+                                            Dict(
+                                                keys=[Constant(value='name', kind=None),
+                                                    Constant(value='type', kind=None),
+                                                    Constant(value='value', kind=None)],
+                                                values=[Constant(value='array', kind=None),
+                                                    Attribute(
+                                                        value=Call(func=Name(id='type'),
+                                                            args=[Name(id='array')],
+                                                            keywords=[]),
+                                                        attr='__name__'),
+                                                    Call(func=Attribute(value=Name(id='sys'), attr='getsizeof'),
+                                                        args=[Name(id='array')],
+                                                        keywords=[])])],
+                                        keywords=[]))],
+                            orelse=[])],
+                    orelse=[]),
+                Expr(
+                    value=Call(func=Name(id='merge_sort'),
+                        args=[Name(id='array'),
+                            Constant(value=0, kind=None),
+                            BinOp(left=Call(func=Name(id='len'), args=[Name(id='array')], keywords=[]),
+                                op=Sub,
+                                right=Constant(value=1, kind=None))],
+                        keywords=[])),
+                Expr(value=Call(func=Name(id='print'), args=[Name(id='array')], keywords=[]))],
+            decorator_list=[Name(id='consumption_tracker')],
+            returns=None,
+            type_comment=None),
+        Expr(value=Call(func=Name(id='main'), args=[], keywords=[]))],
+    type_ignores=[])

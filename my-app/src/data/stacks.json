@@ -1,0 +1,2443 @@
+{
+    "children": [
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 9.5367431640625e-07
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 0.0
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 212,
+                                                            "typed_memory": [
+                                                                {
+                                                                    "type": "list",
+                                                                    "value": 128
+                                                                },
+                                                                {
+                                                                    "type": "int",
+                                                                    "value": 84
+                                                                }
+                                                            ]
+                                                        },
+                                                        "vars": [
+                                                            {
+                                                                "name": "left_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "right_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "left_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "right_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "sorted_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            }
+                                                        ]
+                                                    },
+                                                    "name": "merge",
+                                                    "value": 6.389617919921875e-05
+                                                }
+                                            ],
+                                            "heapAlloc": {
+                                                "total": {
+                                                    "total_memory": 24,
+                                                    "typed_memory": [
+                                                        {
+                                                            "type": "int",
+                                                            "value": 24
+                                                        }
+                                                    ]
+                                                },
+                                                "vars": [
+                                                    {
+                                                        "name": "middle",
+                                                        "type": "int",
+                                                        "value": 24
+                                                    }
+                                                ]
+                                            },
+                                            "name": "merge_sort",
+                                            "value": 7.700920104980469e-05
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 9.5367431640625e-07
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 9.5367431640625e-07
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 212,
+                                                            "typed_memory": [
+                                                                {
+                                                                    "type": "list",
+                                                                    "value": 128
+                                                                },
+                                                                {
+                                                                    "type": "int",
+                                                                    "value": 84
+                                                                }
+                                                            ]
+                                                        },
+                                                        "vars": [
+                                                            {
+                                                                "name": "left_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "right_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "left_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "right_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "sorted_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            }
+                                                        ]
+                                                    },
+                                                    "name": "merge",
+                                                    "value": 3.1948089599609375e-05
+                                                }
+                                            ],
+                                            "heapAlloc": {
+                                                "total": {
+                                                    "total_memory": 28,
+                                                    "typed_memory": [
+                                                        {
+                                                            "type": "int",
+                                                            "value": 28
+                                                        }
+                                                    ]
+                                                },
+                                                "vars": [
+                                                    {
+                                                        "name": "middle",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    }
+                                                ]
+                                            },
+                                            "name": "merge_sort",
+                                            "value": 4.792213439941406e-05
+                                        },
+                                        {
+                                            "children": [],
+                                            "heapAlloc": {
+                                                "total": {
+                                                    "total_memory": 228,
+                                                    "typed_memory": [
+                                                        {
+                                                            "type": "list",
+                                                            "value": 144
+                                                        },
+                                                        {
+                                                            "type": "int",
+                                                            "value": 84
+                                                        }
+                                                    ]
+                                                },
+                                                "vars": [
+                                                    {
+                                                        "name": "left_copy",
+                                                        "type": "list",
+                                                        "value": 72
+                                                    },
+                                                    {
+                                                        "name": "right_copy",
+                                                        "type": "list",
+                                                        "value": 72
+                                                    },
+                                                    {
+                                                        "name": "left_copy_index",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    },
+                                                    {
+                                                        "name": "right_copy_index",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    },
+                                                    {
+                                                        "name": "sorted_index",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    }
+                                                ]
+                                            },
+                                            "name": "merge",
+                                            "value": 4.696846008300781e-05
+                                        }
+                                    ],
+                                    "heapAlloc": {
+                                        "total": {
+                                            "total_memory": 28,
+                                            "typed_memory": [
+                                                {
+                                                    "type": "int",
+                                                    "value": 28
+                                                }
+                                            ]
+                                        },
+                                        "vars": [
+                                            {
+                                                "name": "middle",
+                                                "type": "int",
+                                                "value": 28
+                                            }
+                                        ]
+                                    },
+                                    "name": "merge_sort",
+                                    "value": 0.00018405914306640625
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 9.5367431640625e-07
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 1.1920928955078125e-06
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 212,
+                                                            "typed_memory": [
+                                                                {
+                                                                    "type": "list",
+                                                                    "value": 128
+                                                                },
+                                                                {
+                                                                    "type": "int",
+                                                                    "value": 84
+                                                                }
+                                                            ]
+                                                        },
+                                                        "vars": [
+                                                            {
+                                                                "name": "left_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "right_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "left_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "right_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "sorted_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            }
+                                                        ]
+                                                    },
+                                                    "name": "merge",
+                                                    "value": 3.0040740966796875e-05
+                                                }
+                                            ],
+                                            "heapAlloc": {
+                                                "total": {
+                                                    "total_memory": 28,
+                                                    "typed_memory": [
+                                                        {
+                                                            "type": "int",
+                                                            "value": 28
+                                                        }
+                                                    ]
+                                                },
+                                                "vars": [
+                                                    {
+                                                        "name": "middle",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    }
+                                                ]
+                                            },
+                                            "name": "merge_sort",
+                                            "value": 4.291534423828125e-05
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 9.5367431640625e-07
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 9.5367431640625e-07
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 212,
+                                                            "typed_memory": [
+                                                                {
+                                                                    "type": "list",
+                                                                    "value": 128
+                                                                },
+                                                                {
+                                                                    "type": "int",
+                                                                    "value": 84
+                                                                }
+                                                            ]
+                                                        },
+                                                        "vars": [
+                                                            {
+                                                                "name": "left_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "right_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "left_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "right_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "sorted_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            }
+                                                        ]
+                                                    },
+                                                    "name": "merge",
+                                                    "value": 3.0040740966796875e-05
+                                                }
+                                            ],
+                                            "heapAlloc": {
+                                                "total": {
+                                                    "total_memory": 28,
+                                                    "typed_memory": [
+                                                        {
+                                                            "type": "int",
+                                                            "value": 28
+                                                        }
+                                                    ]
+                                                },
+                                                "vars": [
+                                                    {
+                                                        "name": "middle",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    }
+                                                ]
+                                            },
+                                            "name": "merge_sort",
+                                            "value": 4.076957702636719e-05
+                                        },
+                                        {
+                                            "children": [],
+                                            "heapAlloc": {
+                                                "total": {
+                                                    "total_memory": 228,
+                                                    "typed_memory": [
+                                                        {
+                                                            "type": "list",
+                                                            "value": 144
+                                                        },
+                                                        {
+                                                            "type": "int",
+                                                            "value": 84
+                                                        }
+                                                    ]
+                                                },
+                                                "vars": [
+                                                    {
+                                                        "name": "left_copy",
+                                                        "type": "list",
+                                                        "value": 72
+                                                    },
+                                                    {
+                                                        "name": "right_copy",
+                                                        "type": "list",
+                                                        "value": 72
+                                                    },
+                                                    {
+                                                        "name": "left_copy_index",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    },
+                                                    {
+                                                        "name": "right_copy_index",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    },
+                                                    {
+                                                        "name": "sorted_index",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    }
+                                                ]
+                                            },
+                                            "name": "merge",
+                                            "value": 4.506111145019531e-05
+                                        }
+                                    ],
+                                    "heapAlloc": {
+                                        "total": {
+                                            "total_memory": 28,
+                                            "typed_memory": [
+                                                {
+                                                    "type": "int",
+                                                    "value": 28
+                                                }
+                                            ]
+                                        },
+                                        "vars": [
+                                            {
+                                                "name": "middle",
+                                                "type": "int",
+                                                "value": 28
+                                            }
+                                        ]
+                                    },
+                                    "name": "merge_sort",
+                                    "value": 0.00014090538024902344
+                                },
+                                {
+                                    "children": [],
+                                    "heapAlloc": {
+                                        "total": {
+                                            "total_memory": 260,
+                                            "typed_memory": [
+                                                {
+                                                    "type": "list",
+                                                    "value": 176
+                                                },
+                                                {
+                                                    "type": "int",
+                                                    "value": 84
+                                                }
+                                            ]
+                                        },
+                                        "vars": [
+                                            {
+                                                "name": "left_copy",
+                                                "type": "list",
+                                                "value": 88
+                                            },
+                                            {
+                                                "name": "right_copy",
+                                                "type": "list",
+                                                "value": 88
+                                            },
+                                            {
+                                                "name": "left_copy_index",
+                                                "type": "int",
+                                                "value": 28
+                                            },
+                                            {
+                                                "name": "right_copy_index",
+                                                "type": "int",
+                                                "value": 28
+                                            },
+                                            {
+                                                "name": "sorted_index",
+                                                "type": "int",
+                                                "value": 28
+                                            }
+                                        ]
+                                    },
+                                    "name": "merge",
+                                    "value": 7.987022399902344e-05
+                                }
+                            ],
+                            "heapAlloc": {
+                                "total": {
+                                    "total_memory": 28,
+                                    "typed_memory": [
+                                        {
+                                            "type": "int",
+                                            "value": 28
+                                        }
+                                    ]
+                                },
+                                "vars": [
+                                    {
+                                        "name": "middle",
+                                        "type": "int",
+                                        "value": 28
+                                    }
+                                ]
+                            },
+                            "name": "merge_sort",
+                            "value": 0.00041604042053222656
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 9.5367431640625e-07
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 9.5367431640625e-07
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 212,
+                                                            "typed_memory": [
+                                                                {
+                                                                    "type": "list",
+                                                                    "value": 128
+                                                                },
+                                                                {
+                                                                    "type": "int",
+                                                                    "value": 84
+                                                                }
+                                                            ]
+                                                        },
+                                                        "vars": [
+                                                            {
+                                                                "name": "left_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "right_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "left_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "right_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "sorted_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            }
+                                                        ]
+                                                    },
+                                                    "name": "merge",
+                                                    "value": 3.0994415283203125e-05
+                                                }
+                                            ],
+                                            "heapAlloc": {
+                                                "total": {
+                                                    "total_memory": 28,
+                                                    "typed_memory": [
+                                                        {
+                                                            "type": "int",
+                                                            "value": 28
+                                                        }
+                                                    ]
+                                                },
+                                                "vars": [
+                                                    {
+                                                        "name": "middle",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    }
+                                                ]
+                                            },
+                                            "name": "merge_sort",
+                                            "value": 4.410743713378906e-05
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 9.5367431640625e-07
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 9.5367431640625e-07
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 212,
+                                                            "typed_memory": [
+                                                                {
+                                                                    "type": "list",
+                                                                    "value": 128
+                                                                },
+                                                                {
+                                                                    "type": "int",
+                                                                    "value": 84
+                                                                }
+                                                            ]
+                                                        },
+                                                        "vars": [
+                                                            {
+                                                                "name": "left_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "right_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "left_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "right_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "sorted_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            }
+                                                        ]
+                                                    },
+                                                    "name": "merge",
+                                                    "value": 3.0040740966796875e-05
+                                                }
+                                            ],
+                                            "heapAlloc": {
+                                                "total": {
+                                                    "total_memory": 28,
+                                                    "typed_memory": [
+                                                        {
+                                                            "type": "int",
+                                                            "value": 28
+                                                        }
+                                                    ]
+                                                },
+                                                "vars": [
+                                                    {
+                                                        "name": "middle",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    }
+                                                ]
+                                            },
+                                            "name": "merge_sort",
+                                            "value": 4.1961669921875e-05
+                                        },
+                                        {
+                                            "children": [],
+                                            "heapAlloc": {
+                                                "total": {
+                                                    "total_memory": 228,
+                                                    "typed_memory": [
+                                                        {
+                                                            "type": "list",
+                                                            "value": 144
+                                                        },
+                                                        {
+                                                            "type": "int",
+                                                            "value": 84
+                                                        }
+                                                    ]
+                                                },
+                                                "vars": [
+                                                    {
+                                                        "name": "left_copy",
+                                                        "type": "list",
+                                                        "value": 72
+                                                    },
+                                                    {
+                                                        "name": "right_copy",
+                                                        "type": "list",
+                                                        "value": 72
+                                                    },
+                                                    {
+                                                        "name": "left_copy_index",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    },
+                                                    {
+                                                        "name": "right_copy_index",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    },
+                                                    {
+                                                        "name": "sorted_index",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    }
+                                                ]
+                                            },
+                                            "name": "merge",
+                                            "value": 4.696846008300781e-05
+                                        }
+                                    ],
+                                    "heapAlloc": {
+                                        "total": {
+                                            "total_memory": 28,
+                                            "typed_memory": [
+                                                {
+                                                    "type": "int",
+                                                    "value": 28
+                                                }
+                                            ]
+                                        },
+                                        "vars": [
+                                            {
+                                                "name": "middle",
+                                                "type": "int",
+                                                "value": 28
+                                            }
+                                        ]
+                                    },
+                                    "name": "merge_sort",
+                                    "value": 0.00014519691467285156
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 9.5367431640625e-07
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 9.5367431640625e-07
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 212,
+                                                            "typed_memory": [
+                                                                {
+                                                                    "type": "list",
+                                                                    "value": 128
+                                                                },
+                                                                {
+                                                                    "type": "int",
+                                                                    "value": 84
+                                                                }
+                                                            ]
+                                                        },
+                                                        "vars": [
+                                                            {
+                                                                "name": "left_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "right_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "left_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "right_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "sorted_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            }
+                                                        ]
+                                                    },
+                                                    "name": "merge",
+                                                    "value": 3.0040740966796875e-05
+                                                }
+                                            ],
+                                            "heapAlloc": {
+                                                "total": {
+                                                    "total_memory": 28,
+                                                    "typed_memory": [
+                                                        {
+                                                            "type": "int",
+                                                            "value": 28
+                                                        }
+                                                    ]
+                                                },
+                                                "vars": [
+                                                    {
+                                                        "name": "middle",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    }
+                                                ]
+                                            },
+                                            "name": "merge_sort",
+                                            "value": 4.291534423828125e-05
+                                        },
+                                        {
+                                            "children": [],
+                                            "heapAlloc": {
+                                                "total": {
+                                                    "total_memory": 0,
+                                                    "typed_memory": []
+                                                },
+                                                "vars": []
+                                            },
+                                            "name": "merge_sort",
+                                            "value": 0.0
+                                        },
+                                        {
+                                            "children": [],
+                                            "heapAlloc": {
+                                                "total": {
+                                                    "total_memory": 220,
+                                                    "typed_memory": [
+                                                        {
+                                                            "type": "list",
+                                                            "value": 136
+                                                        },
+                                                        {
+                                                            "type": "int",
+                                                            "value": 84
+                                                        }
+                                                    ]
+                                                },
+                                                "vars": [
+                                                    {
+                                                        "name": "left_copy",
+                                                        "type": "list",
+                                                        "value": 72
+                                                    },
+                                                    {
+                                                        "name": "right_copy",
+                                                        "type": "list",
+                                                        "value": 64
+                                                    },
+                                                    {
+                                                        "name": "left_copy_index",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    },
+                                                    {
+                                                        "name": "right_copy_index",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    },
+                                                    {
+                                                        "name": "sorted_index",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    }
+                                                ]
+                                            },
+                                            "name": "merge",
+                                            "value": 3.790855407714844e-05
+                                        }
+                                    ],
+                                    "heapAlloc": {
+                                        "total": {
+                                            "total_memory": 28,
+                                            "typed_memory": [
+                                                {
+                                                    "type": "int",
+                                                    "value": 28
+                                                }
+                                            ]
+                                        },
+                                        "vars": [
+                                            {
+                                                "name": "middle",
+                                                "type": "int",
+                                                "value": 28
+                                            }
+                                        ]
+                                    },
+                                    "name": "merge_sort",
+                                    "value": 9.393692016601562e-05
+                                },
+                                {
+                                    "children": [],
+                                    "heapAlloc": {
+                                        "total": {
+                                            "total_memory": 252,
+                                            "typed_memory": [
+                                                {
+                                                    "type": "list",
+                                                    "value": 168
+                                                },
+                                                {
+                                                    "type": "int",
+                                                    "value": 84
+                                                }
+                                            ]
+                                        },
+                                        "vars": [
+                                            {
+                                                "name": "left_copy",
+                                                "type": "list",
+                                                "value": 88
+                                            },
+                                            {
+                                                "name": "right_copy",
+                                                "type": "list",
+                                                "value": 80
+                                            },
+                                            {
+                                                "name": "left_copy_index",
+                                                "type": "int",
+                                                "value": 28
+                                            },
+                                            {
+                                                "name": "right_copy_index",
+                                                "type": "int",
+                                                "value": 28
+                                            },
+                                            {
+                                                "name": "sorted_index",
+                                                "type": "int",
+                                                "value": 28
+                                            }
+                                        ]
+                                    },
+                                    "name": "merge",
+                                    "value": 7.200241088867188e-05
+                                }
+                            ],
+                            "heapAlloc": {
+                                "total": {
+                                    "total_memory": 28,
+                                    "typed_memory": [
+                                        {
+                                            "type": "int",
+                                            "value": 28
+                                        }
+                                    ]
+                                },
+                                "vars": [
+                                    {
+                                        "name": "middle",
+                                        "type": "int",
+                                        "value": 28
+                                    }
+                                ]
+                            },
+                            "name": "merge_sort",
+                            "value": 0.0003228187561035156
+                        },
+                        {
+                            "children": [],
+                            "heapAlloc": {
+                                "total": {
+                                    "total_memory": 316,
+                                    "typed_memory": [
+                                        {
+                                            "type": "list",
+                                            "value": 232
+                                        },
+                                        {
+                                            "type": "int",
+                                            "value": 84
+                                        }
+                                    ]
+                                },
+                                "vars": [
+                                    {
+                                        "name": "left_copy",
+                                        "type": "list",
+                                        "value": 120
+                                    },
+                                    {
+                                        "name": "right_copy",
+                                        "type": "list",
+                                        "value": 112
+                                    },
+                                    {
+                                        "name": "left_copy_index",
+                                        "type": "int",
+                                        "value": 28
+                                    },
+                                    {
+                                        "name": "right_copy_index",
+                                        "type": "int",
+                                        "value": 28
+                                    },
+                                    {
+                                        "name": "sorted_index",
+                                        "type": "int",
+                                        "value": 28
+                                    }
+                                ]
+                            },
+                            "name": "merge",
+                            "value": 0.00013589859008789062
+                        }
+                    ],
+                    "heapAlloc": {
+                        "total": {
+                            "total_memory": 28,
+                            "typed_memory": [
+                                {
+                                    "type": "int",
+                                    "value": 28
+                                }
+                            ]
+                        },
+                        "vars": [
+                            {
+                                "name": "middle",
+                                "type": "int",
+                                "value": 28
+                            }
+                        ]
+                    },
+                    "name": "merge_sort",
+                    "value": 0.0008881092071533203
+                },
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 9.5367431640625e-07
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 9.5367431640625e-07
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 212,
+                                                            "typed_memory": [
+                                                                {
+                                                                    "type": "list",
+                                                                    "value": 128
+                                                                },
+                                                                {
+                                                                    "type": "int",
+                                                                    "value": 84
+                                                                }
+                                                            ]
+                                                        },
+                                                        "vars": [
+                                                            {
+                                                                "name": "left_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "right_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "left_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "right_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "sorted_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            }
+                                                        ]
+                                                    },
+                                                    "name": "merge",
+                                                    "value": 3.0994415283203125e-05
+                                                }
+                                            ],
+                                            "heapAlloc": {
+                                                "total": {
+                                                    "total_memory": 28,
+                                                    "typed_memory": [
+                                                        {
+                                                            "type": "int",
+                                                            "value": 28
+                                                        }
+                                                    ]
+                                                },
+                                                "vars": [
+                                                    {
+                                                        "name": "middle",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    }
+                                                ]
+                                            },
+                                            "name": "merge_sort",
+                                            "value": 4.410743713378906e-05
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 9.5367431640625e-07
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 0.0
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 212,
+                                                            "typed_memory": [
+                                                                {
+                                                                    "type": "list",
+                                                                    "value": 128
+                                                                },
+                                                                {
+                                                                    "type": "int",
+                                                                    "value": 84
+                                                                }
+                                                            ]
+                                                        },
+                                                        "vars": [
+                                                            {
+                                                                "name": "left_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "right_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "left_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "right_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "sorted_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            }
+                                                        ]
+                                                    },
+                                                    "name": "merge",
+                                                    "value": 8.916854858398438e-05
+                                                }
+                                            ],
+                                            "heapAlloc": {
+                                                "total": {
+                                                    "total_memory": 28,
+                                                    "typed_memory": [
+                                                        {
+                                                            "type": "int",
+                                                            "value": 28
+                                                        }
+                                                    ]
+                                                },
+                                                "vars": [
+                                                    {
+                                                        "name": "middle",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    }
+                                                ]
+                                            },
+                                            "name": "merge_sort",
+                                            "value": 0.000102996826171875
+                                        },
+                                        {
+                                            "children": [],
+                                            "heapAlloc": {
+                                                "total": {
+                                                    "total_memory": 228,
+                                                    "typed_memory": [
+                                                        {
+                                                            "type": "list",
+                                                            "value": 144
+                                                        },
+                                                        {
+                                                            "type": "int",
+                                                            "value": 84
+                                                        }
+                                                    ]
+                                                },
+                                                "vars": [
+                                                    {
+                                                        "name": "left_copy",
+                                                        "type": "list",
+                                                        "value": 72
+                                                    },
+                                                    {
+                                                        "name": "right_copy",
+                                                        "type": "list",
+                                                        "value": 72
+                                                    },
+                                                    {
+                                                        "name": "left_copy_index",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    },
+                                                    {
+                                                        "name": "right_copy_index",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    },
+                                                    {
+                                                        "name": "sorted_index",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    }
+                                                ]
+                                            },
+                                            "name": "merge",
+                                            "value": 2.6941299438476562e-05
+                                        }
+                                    ],
+                                    "heapAlloc": {
+                                        "total": {
+                                            "total_memory": 28,
+                                            "typed_memory": [
+                                                {
+                                                    "type": "int",
+                                                    "value": 28
+                                                }
+                                            ]
+                                        },
+                                        "vars": [
+                                            {
+                                                "name": "middle",
+                                                "type": "int",
+                                                "value": 28
+                                            }
+                                        ]
+                                    },
+                                    "name": "merge_sort",
+                                    "value": 0.00018715858459472656
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 9.5367431640625e-07
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 9.5367431640625e-07
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 212,
+                                                            "typed_memory": [
+                                                                {
+                                                                    "type": "list",
+                                                                    "value": 128
+                                                                },
+                                                                {
+                                                                    "type": "int",
+                                                                    "value": 84
+                                                                }
+                                                            ]
+                                                        },
+                                                        "vars": [
+                                                            {
+                                                                "name": "left_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "right_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "left_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "right_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "sorted_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            }
+                                                        ]
+                                                    },
+                                                    "name": "merge",
+                                                    "value": 1.6927719116210938e-05
+                                                }
+                                            ],
+                                            "heapAlloc": {
+                                                "total": {
+                                                    "total_memory": 28,
+                                                    "typed_memory": [
+                                                        {
+                                                            "type": "int",
+                                                            "value": 28
+                                                        }
+                                                    ]
+                                                },
+                                                "vars": [
+                                                    {
+                                                        "name": "middle",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    }
+                                                ]
+                                            },
+                                            "name": "merge_sort",
+                                            "value": 2.5033950805664062e-05
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 0.0
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 0.0
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 212,
+                                                            "typed_memory": [
+                                                                {
+                                                                    "type": "list",
+                                                                    "value": 128
+                                                                },
+                                                                {
+                                                                    "type": "int",
+                                                                    "value": 84
+                                                                }
+                                                            ]
+                                                        },
+                                                        "vars": [
+                                                            {
+                                                                "name": "left_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "right_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "left_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "right_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "sorted_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            }
+                                                        ]
+                                                    },
+                                                    "name": "merge",
+                                                    "value": 1.5974044799804688e-05
+                                                }
+                                            ],
+                                            "heapAlloc": {
+                                                "total": {
+                                                    "total_memory": 28,
+                                                    "typed_memory": [
+                                                        {
+                                                            "type": "int",
+                                                            "value": 28
+                                                        }
+                                                    ]
+                                                },
+                                                "vars": [
+                                                    {
+                                                        "name": "middle",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    }
+                                                ]
+                                            },
+                                            "name": "merge_sort",
+                                            "value": 2.288818359375e-05
+                                        },
+                                        {
+                                            "children": [],
+                                            "heapAlloc": {
+                                                "total": {
+                                                    "total_memory": 228,
+                                                    "typed_memory": [
+                                                        {
+                                                            "type": "list",
+                                                            "value": 144
+                                                        },
+                                                        {
+                                                            "type": "int",
+                                                            "value": 84
+                                                        }
+                                                    ]
+                                                },
+                                                "vars": [
+                                                    {
+                                                        "name": "left_copy",
+                                                        "type": "list",
+                                                        "value": 72
+                                                    },
+                                                    {
+                                                        "name": "right_copy",
+                                                        "type": "list",
+                                                        "value": 72
+                                                    },
+                                                    {
+                                                        "name": "left_copy_index",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    },
+                                                    {
+                                                        "name": "right_copy_index",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    },
+                                                    {
+                                                        "name": "sorted_index",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    }
+                                                ]
+                                            },
+                                            "name": "merge",
+                                            "value": 2.47955322265625e-05
+                                        }
+                                    ],
+                                    "heapAlloc": {
+                                        "total": {
+                                            "total_memory": 28,
+                                            "typed_memory": [
+                                                {
+                                                    "type": "int",
+                                                    "value": 28
+                                                }
+                                            ]
+                                        },
+                                        "vars": [
+                                            {
+                                                "name": "middle",
+                                                "type": "int",
+                                                "value": 28
+                                            }
+                                        ]
+                                    },
+                                    "name": "merge_sort",
+                                    "value": 8.0108642578125e-05
+                                },
+                                {
+                                    "children": [],
+                                    "heapAlloc": {
+                                        "total": {
+                                            "total_memory": 260,
+                                            "typed_memory": [
+                                                {
+                                                    "type": "list",
+                                                    "value": 176
+                                                },
+                                                {
+                                                    "type": "int",
+                                                    "value": 84
+                                                }
+                                            ]
+                                        },
+                                        "vars": [
+                                            {
+                                                "name": "left_copy",
+                                                "type": "list",
+                                                "value": 88
+                                            },
+                                            {
+                                                "name": "right_copy",
+                                                "type": "list",
+                                                "value": 88
+                                            },
+                                            {
+                                                "name": "left_copy_index",
+                                                "type": "int",
+                                                "value": 28
+                                            },
+                                            {
+                                                "name": "right_copy_index",
+                                                "type": "int",
+                                                "value": 28
+                                            },
+                                            {
+                                                "name": "sorted_index",
+                                                "type": "int",
+                                                "value": 28
+                                            }
+                                        ]
+                                    },
+                                    "name": "merge",
+                                    "value": 4.291534423828125e-05
+                                }
+                            ],
+                            "heapAlloc": {
+                                "total": {
+                                    "total_memory": 28,
+                                    "typed_memory": [
+                                        {
+                                            "type": "int",
+                                            "value": 28
+                                        }
+                                    ]
+                                },
+                                "vars": [
+                                    {
+                                        "name": "middle",
+                                        "type": "int",
+                                        "value": 28
+                                    }
+                                ]
+                            },
+                            "name": "merge_sort",
+                            "value": 0.0003190040588378906
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 0.0
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 0.0
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 212,
+                                                            "typed_memory": [
+                                                                {
+                                                                    "type": "list",
+                                                                    "value": 128
+                                                                },
+                                                                {
+                                                                    "type": "int",
+                                                                    "value": 84
+                                                                }
+                                                            ]
+                                                        },
+                                                        "vars": [
+                                                            {
+                                                                "name": "left_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "right_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "left_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "right_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "sorted_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            }
+                                                        ]
+                                                    },
+                                                    "name": "merge",
+                                                    "value": 1.5974044799804688e-05
+                                                }
+                                            ],
+                                            "heapAlloc": {
+                                                "total": {
+                                                    "total_memory": 28,
+                                                    "typed_memory": [
+                                                        {
+                                                            "type": "int",
+                                                            "value": 28
+                                                        }
+                                                    ]
+                                                },
+                                                "vars": [
+                                                    {
+                                                        "name": "middle",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    }
+                                                ]
+                                            },
+                                            "name": "merge_sort",
+                                            "value": 2.288818359375e-05
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 0.0
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 1.1920928955078125e-06
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 212,
+                                                            "typed_memory": [
+                                                                {
+                                                                    "type": "list",
+                                                                    "value": 128
+                                                                },
+                                                                {
+                                                                    "type": "int",
+                                                                    "value": 84
+                                                                }
+                                                            ]
+                                                        },
+                                                        "vars": [
+                                                            {
+                                                                "name": "left_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "right_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "left_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "right_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "sorted_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            }
+                                                        ]
+                                                    },
+                                                    "name": "merge",
+                                                    "value": 1.5974044799804688e-05
+                                                }
+                                            ],
+                                            "heapAlloc": {
+                                                "total": {
+                                                    "total_memory": 28,
+                                                    "typed_memory": [
+                                                        {
+                                                            "type": "int",
+                                                            "value": 28
+                                                        }
+                                                    ]
+                                                },
+                                                "vars": [
+                                                    {
+                                                        "name": "middle",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    }
+                                                ]
+                                            },
+                                            "name": "merge_sort",
+                                            "value": 2.288818359375e-05
+                                        },
+                                        {
+                                            "children": [],
+                                            "heapAlloc": {
+                                                "total": {
+                                                    "total_memory": 228,
+                                                    "typed_memory": [
+                                                        {
+                                                            "type": "list",
+                                                            "value": 144
+                                                        },
+                                                        {
+                                                            "type": "int",
+                                                            "value": 84
+                                                        }
+                                                    ]
+                                                },
+                                                "vars": [
+                                                    {
+                                                        "name": "left_copy",
+                                                        "type": "list",
+                                                        "value": 72
+                                                    },
+                                                    {
+                                                        "name": "right_copy",
+                                                        "type": "list",
+                                                        "value": 72
+                                                    },
+                                                    {
+                                                        "name": "left_copy_index",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    },
+                                                    {
+                                                        "name": "right_copy_index",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    },
+                                                    {
+                                                        "name": "sorted_index",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    }
+                                                ]
+                                            },
+                                            "name": "merge",
+                                            "value": 2.5033950805664062e-05
+                                        }
+                                    ],
+                                    "heapAlloc": {
+                                        "total": {
+                                            "total_memory": 28,
+                                            "typed_memory": [
+                                                {
+                                                    "type": "int",
+                                                    "value": 28
+                                                }
+                                            ]
+                                        },
+                                        "vars": [
+                                            {
+                                                "name": "middle",
+                                                "type": "int",
+                                                "value": 28
+                                            }
+                                        ]
+                                    },
+                                    "name": "merge_sort",
+                                    "value": 7.82012939453125e-05
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 1.1920928955078125e-06
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 0,
+                                                            "typed_memory": []
+                                                        },
+                                                        "vars": []
+                                                    },
+                                                    "name": "merge_sort",
+                                                    "value": 9.5367431640625e-07
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "heapAlloc": {
+                                                        "total": {
+                                                            "total_memory": 212,
+                                                            "typed_memory": [
+                                                                {
+                                                                    "type": "list",
+                                                                    "value": 128
+                                                                },
+                                                                {
+                                                                    "type": "int",
+                                                                    "value": 84
+                                                                }
+                                                            ]
+                                                        },
+                                                        "vars": [
+                                                            {
+                                                                "name": "left_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "right_copy",
+                                                                "type": "list",
+                                                                "value": 64
+                                                            },
+                                                            {
+                                                                "name": "left_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "right_copy_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            },
+                                                            {
+                                                                "name": "sorted_index",
+                                                                "type": "int",
+                                                                "value": 28
+                                                            }
+                                                        ]
+                                                    },
+                                                    "name": "merge",
+                                                    "value": 1.5974044799804688e-05
+                                                }
+                                            ],
+                                            "heapAlloc": {
+                                                "total": {
+                                                    "total_memory": 28,
+                                                    "typed_memory": [
+                                                        {
+                                                            "type": "int",
+                                                            "value": 28
+                                                        }
+                                                    ]
+                                                },
+                                                "vars": [
+                                                    {
+                                                        "name": "middle",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    }
+                                                ]
+                                            },
+                                            "name": "merge_sort",
+                                            "value": 2.3126602172851562e-05
+                                        },
+                                        {
+                                            "children": [],
+                                            "heapAlloc": {
+                                                "total": {
+                                                    "total_memory": 0,
+                                                    "typed_memory": []
+                                                },
+                                                "vars": []
+                                            },
+                                            "name": "merge_sort",
+                                            "value": 0.0
+                                        },
+                                        {
+                                            "children": [],
+                                            "heapAlloc": {
+                                                "total": {
+                                                    "total_memory": 220,
+                                                    "typed_memory": [
+                                                        {
+                                                            "type": "list",
+                                                            "value": 136
+                                                        },
+                                                        {
+                                                            "type": "int",
+                                                            "value": 84
+                                                        }
+                                                    ]
+                                                },
+                                                "vars": [
+                                                    {
+                                                        "name": "left_copy",
+                                                        "type": "list",
+                                                        "value": 72
+                                                    },
+                                                    {
+                                                        "name": "right_copy",
+                                                        "type": "list",
+                                                        "value": 64
+                                                    },
+                                                    {
+                                                        "name": "left_copy_index",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    },
+                                                    {
+                                                        "name": "right_copy_index",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    },
+                                                    {
+                                                        "name": "sorted_index",
+                                                        "type": "int",
+                                                        "value": 28
+                                                    }
+                                                ]
+                                            },
+                                            "name": "merge",
+                                            "value": 2.09808349609375e-05
+                                        }
+                                    ],
+                                    "heapAlloc": {
+                                        "total": {
+                                            "total_memory": 28,
+                                            "typed_memory": [
+                                                {
+                                                    "type": "int",
+                                                    "value": 28
+                                                }
+                                            ]
+                                        },
+                                        "vars": [
+                                            {
+                                                "name": "middle",
+                                                "type": "int",
+                                                "value": 28
+                                            }
+                                        ]
+                                    },
+                                    "name": "merge_sort",
+                                    "value": 4.982948303222656e-05
+                                },
+                                {
+                                    "children": [],
+                                    "heapAlloc": {
+                                        "total": {
+                                            "total_memory": 252,
+                                            "typed_memory": [
+                                                {
+                                                    "type": "list",
+                                                    "value": 168
+                                                },
+                                                {
+                                                    "type": "int",
+                                                    "value": 84
+                                                }
+                                            ]
+                                        },
+                                        "vars": [
+                                            {
+                                                "name": "left_copy",
+                                                "type": "list",
+                                                "value": 88
+                                            },
+                                            {
+                                                "name": "right_copy",
+                                                "type": "list",
+                                                "value": 80
+                                            },
+                                            {
+                                                "name": "left_copy_index",
+                                                "type": "int",
+                                                "value": 28
+                                            },
+                                            {
+                                                "name": "right_copy_index",
+                                                "type": "int",
+                                                "value": 28
+                                            },
+                                            {
+                                                "name": "sorted_index",
+                                                "type": "int",
+                                                "value": 28
+                                            }
+                                        ]
+                                    },
+                                    "name": "merge",
+                                    "value": 3.886222839355469e-05
+                                }
+                            ],
+                            "heapAlloc": {
+                                "total": {
+                                    "total_memory": 28,
+                                    "typed_memory": [
+                                        {
+                                            "type": "int",
+                                            "value": 28
+                                        }
+                                    ]
+                                },
+                                "vars": [
+                                    {
+                                        "name": "middle",
+                                        "type": "int",
+                                        "value": 28
+                                    }
+                                ]
+                            },
+                            "name": "merge_sort",
+                            "value": 0.00017189979553222656
+                        },
+                        {
+                            "children": [],
+                            "heapAlloc": {
+                                "total": {
+                                    "total_memory": 316,
+                                    "typed_memory": [
+                                        {
+                                            "type": "list",
+                                            "value": 232
+                                        },
+                                        {
+                                            "type": "int",
+                                            "value": 84
+                                        }
+                                    ]
+                                },
+                                "vars": [
+                                    {
+                                        "name": "left_copy",
+                                        "type": "list",
+                                        "value": 120
+                                    },
+                                    {
+                                        "name": "right_copy",
+                                        "type": "list",
+                                        "value": 112
+                                    },
+                                    {
+                                        "name": "left_copy_index",
+                                        "type": "int",
+                                        "value": 28
+                                    },
+                                    {
+                                        "name": "right_copy_index",
+                                        "type": "int",
+                                        "value": 28
+                                    },
+                                    {
+                                        "name": "sorted_index",
+                                        "type": "int",
+                                        "value": 28
+                                    }
+                                ]
+                            },
+                            "name": "merge",
+                            "value": 7.581710815429688e-05
+                        }
+                    ],
+                    "heapAlloc": {
+                        "total": {
+                            "total_memory": 28,
+                            "typed_memory": [
+                                {
+                                    "type": "int",
+                                    "value": 28
+                                }
+                            ]
+                        },
+                        "vars": [
+                            {
+                                "name": "middle",
+                                "type": "int",
+                                "value": 28
+                            }
+                        ]
+                    },
+                    "name": "merge_sort",
+                    "value": 0.0005772113800048828
+                },
+                {
+                    "children": [],
+                    "heapAlloc": {
+                        "total": {
+                            "total_memory": 436,
+                            "typed_memory": [
+                                {
+                                    "type": "list",
+                                    "value": 352
+                                },
+                                {
+                                    "type": "int",
+                                    "value": 84
+                                }
+                            ]
+                        },
+                        "vars": [
+                            {
+                                "name": "left_copy",
+                                "type": "list",
+                                "value": 176
+                            },
+                            {
+                                "name": "right_copy",
+                                "type": "list",
+                                "value": 176
+                            },
+                            {
+                                "name": "left_copy_index",
+                                "type": "int",
+                                "value": 28
+                            },
+                            {
+                                "name": "right_copy_index",
+                                "type": "int",
+                                "value": 28
+                            },
+                            {
+                                "name": "sorted_index",
+                                "type": "int",
+                                "value": 28
+                            }
+                        ]
+                    },
+                    "name": "merge",
+                    "value": 0.0001480579376220703
+                }
+            ],
+            "heapAlloc": {
+                "total": {
+                    "total_memory": 28,
+                    "typed_memory": [
+                        {
+                            "type": "int",
+                            "value": 28
+                        }
+                    ]
+                },
+                "vars": [
+                    {
+                        "name": "middle",
+                        "type": "int",
+                        "value": 28
+                    }
+                ]
+            },
+            "name": "merge_sort",
+            "value": 0.00162506103515625
+        }
+    ],
+    "heapAlloc": {
+        "total": {
+            "total_memory": 312,
+            "typed_memory": [
+                {
+                    "type": "list",
+                    "value": 312
+                }
+            ]
+        },
+        "vars": [
+            {
+                "name": "array",
+                "type": "list",
+                "value": 312
+            }
+        ]
+    },
+    "name": "main",
+    "value": 0.001667022705078125
+}
